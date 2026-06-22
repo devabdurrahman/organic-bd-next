@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { formatBDT } from "@/lib/woocommerce";
+import { createOrder } from "@/lib/products";
 
 const BD_DISTRICTS = [
   "ঢাকা", "চট্টগ্রাম", "রাজশাহী", "খুলনা", "বরিশাল", "সিলেট", "রংপুর", "ময়মনসিংহ",
@@ -12,11 +13,11 @@ const BD_DISTRICTS = [
 ];
 
 const PAYMENT_METHODS = [
-  { id: "bkash", label: "বিকাশ", img: "💚" },
-  { id: "nagad", label: "নগদ", img: "🟠" },
-  { id: "rocket", label: "রকেট", img: "💜" },
+  // { id: "bkash", label: "বিকাশ", img: "💚" },
+  // { id: "nagad", label: "নগদ", img: "🟠" },
+  // { id: "rocket", label: "রকেট", img: "💜" },
   { id: "cod", label: "ক্যাশ অন ডেলিভারি", img: "💵" },
-  { id: "bank", label: "ব্যাংক ট্রান্সফার", img: "🏦" },
+  // { id: "bank", label: "ব্যাংক ট্রান্সফার", img: "🏦" },
 ];
 
 export default function CheckoutPage() {
@@ -25,6 +26,8 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("cod");
   const shippingFee = totalPrice >= 999 ? 0 : 80;
+  const [orderId, setOrderId] = useState<number | null>(null);
+  const [error, setError] = useState("");
 
   const [form, setForm] = useState({
     firstName: "", lastName: "", phone: "", email: "",
@@ -36,15 +39,60 @@ export default function CheckoutPage() {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+  e.preventDefault();
+  setLoading(true);
 
-    // When WooCommerce is connected, replace with:
-    // await createOrder({ payment_method: paymentMethod, billing: {...}, line_items: [...] });
-    await new Promise((r) => setTimeout(r, 1500));
-    clearCart();
-    setSuccess(true);
-    setLoading(false);
+  try {
+    const orderPayload = {
+      payment_method: paymentMethod,
+      payment_method_title: PAYMENT_METHODS.find(m => m.id === paymentMethod)?.label,
+      status: paymentMethod === "cod" ? "processing" : "pending",
+      billing: {
+        first_name: form.firstName,
+        last_name: form.lastName,
+        address_1: form.address,
+        city: form.district,
+        state: form.district,
+        postcode: form.postcode || "1000",
+        country: "BD",
+        email: form.email || "no-email@provided.com",
+        phone: form.phone,
+      },
+      shipping: {
+        first_name: form.firstName,
+        last_name: form.lastName,
+        address_1: form.address,
+        city: form.district,
+        state: form.district,
+        postcode: form.postcode || "1000",
+        country: "BD",
+      },
+      line_items: state.items.map((item) => ({
+        product_id: item.product.id,
+        quantity: item.quantity,
+      })),
+      shipping_lines: [
+        {
+          method_id: "flat_rate",
+          method_title: "Flat Rate",
+          total: String(shippingFee),
+        },
+      ],
+    };
+
+    const order = await createOrder(orderPayload);
+
+      if (order.id) {
+        clearCart();
+        setOrderId(order.id);
+        setSuccess(true);
+      }
+    } catch (error) {
+      console.error("Order failed:", error);
+      setError("অর্ডার সম্পন্ন হয়নি। আবার চেষ্টা করুন।");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (success) {
@@ -52,9 +100,8 @@ export default function CheckoutPage() {
       <div className="max-w-lg mx-auto px-4 py-20 text-center">
         <CheckCircle size={72} className="mx-auto text-[#2D5016] mb-6" />
         <h2 className="text-3xl font-bold text-[#2D3A1E] mb-3">অর্ডার সফল হয়েছে!</h2>
-        <p className="text-[#6B7C52] mb-8">
-          আপনার অর্ডার গ্রহণ করা হয়েছে। শীঘ্রই আমরা আপনার সাথে যোগাযোগ করব।
-        </p>
+        <p className="text-[#6B7C52] mb-2">অর্ডার নম্বর: <strong>#{orderId}</strong></p>
+        <p className="text-[#6B7C52] mb-8">শীঘ্রই আমরা আপনার সাথে যোগাযোগ করব।</p>
         <Link href="/" className="inline-flex items-center gap-2 bg-[#2D5016] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#3D6B1E] transition-colors">
           হোমে ফিরুন
         </Link>
@@ -134,7 +181,7 @@ export default function CheckoutPage() {
             {/* Payment */}
             <div className="bg-white rounded-2xl border border-[#E8E2CC] p-6">
               <h2 className="font-bold text-[#2D3A1E] text-lg mb-5">পেমেন্ট পদ্ধতি</h2>
-              <div className="grid sm:grid-cols-2 gap-3">
+              <div className="grid sm:grid-cols-1 gap-3">
                 {PAYMENT_METHODS.map(({ id, label, img }) => (
                   <label
                     key={id}
@@ -181,6 +228,11 @@ export default function CheckoutPage() {
                   <span className="text-[#2D5016]">{formatBDT(totalPrice + shippingFee)}</span>
                 </div>
               </div>
+              {error && (
+                <p className="text-red-500 text-sm text-center mb-4 bg-red-50 border border-red-200 rounded-xl p-3">
+                  {error}
+                </p>
+              )}
               <button
                 type="submit"
                 disabled={loading || state.items.length === 0}

@@ -1,28 +1,31 @@
 import ProductCard from "@/components/ProductCard";
 import { mockProducts, mockCategories } from "@/lib/mock-data";
-// import { getProducts, getCategories } from "@/lib/woocommerce";
+import { getProducts, getCategories } from "@/lib/products";
+import type { WCCategory } from "@/lib/woocommerce";
 
 export const metadata = { title: "সকল পণ্য — সবুজ মাটি" };
 
-export default async function ProductsPage({
-  searchParams,
-}: {
+export default async function ProductsPage({ searchParams,}: {
   searchParams: Promise<{ category?: string; on_sale?: string; search?: string }>;
 }) {
   const params = await searchParams;
 
-  // Replace with WooCommerce call:
-  // const products = await getProducts({ category: params.category ? Number(params.category) : undefined, on_sale: params.on_sale === "true" });
-  let products = mockProducts;
+  let products = await getProducts();
 
-  if (params.on_sale === "true") products = products.filter((p) => p.on_sale);
-  if (params.category) products = products.filter((p) => p.categories.some((c) => c.slug === params.category));
-  if (params.search) {
-    const q = params.search.toLowerCase();
-    products = products.filter((p) => p.name.toLowerCase().includes(q) || p.short_description.toLowerCase().includes(q));
-  }
+if (params.on_sale === "true") products = products.filter((p) => p.on_sale);
+if (params.category) products = products.filter(
+  (p) => p.categories.some((c) => c.slug === params.category)
+);
+if (params.search) {
+const q = params.search.toLowerCase();
+products = products.filter(
+  (p) => p.name.toLowerCase().includes(q) || p.short_description.toLowerCase().includes(q)
+);
+}
 
-  const categories = mockCategories;
+  //const categories = mockCategories;
+  const categories: WCCategory[] = await getCategories();
+  console.log(categories);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -42,7 +45,7 @@ export default async function ProductsPage({
                   href="/products"
                   className={`block text-sm px-3 py-2 rounded-lg transition-colors ${!params.category ? "bg-[#E8F5D0] text-[#2D5016] font-semibold" : "text-[#4A5E30] hover:bg-[#F5F0E0]"}`}
                 >
-                  সব পণ্য ({mockProducts.length})
+                  সব পণ্য ({products.length})
                 </a>
               </li>
               {categories.map((cat) => (
