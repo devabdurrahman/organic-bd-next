@@ -11,7 +11,7 @@ import { getProducts, getCategories } from "@/lib/products";
 // import { getProducts, getCategories } from "@/lib/woocommerce";
 
 export default async function HomePage() {
-  const products = await getProducts();
+  const {products} = await getProducts();
   const categories = await getCategories();
   // const products = mockProducts;
   //const categories = mockCategories;

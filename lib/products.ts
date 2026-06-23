@@ -8,10 +8,32 @@ const WooCommerce = new WooCommerceRestApi({
   version: 'wc/v3',
 })
 
-export const getProducts = async () => {
-  const products = await WooCommerce.getProducts({ per_page: 20, status: 'publish' })
-  return products.data
-}
+export const getProducts = async (params?: {
+  per_page?: number;
+  page?: number;
+  category?: number;
+  on_sale?: boolean;
+  search?: string;
+  status?: string;
+}) => {
+  const query: Record<string, unknown> = {
+    per_page: params?.per_page ?? 20,
+    page: params?.page ?? 1,
+    status: params?.status ?? "publish",
+  };
+
+  if (params?.search) query.search = params.search;
+  if (params?.category) query.category = params.category;
+  if (params?.on_sale === true) query.on_sale = true;
+
+  const response = await WooCommerce.getProducts(query);
+
+  return {
+    products: response.data,
+    totalPages: Number(response.headers["x-wp-totalpages"]),
+    totalProducts: Number(response.headers["x-wp-total"]),
+  };
+};
 
 export const getProduct = async (id: string) => {
   try {

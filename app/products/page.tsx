@@ -2,30 +2,43 @@ import ProductCard from "@/components/ProductCard";
 import { mockProducts, mockCategories } from "@/lib/mock-data";
 import { getProducts, getCategories } from "@/lib/products";
 import type { WCCategory } from "@/lib/woocommerce";
+import Pagination from "@/components/Pagination";
 
 export const metadata = { title: "সকল পণ্য — সবুজ মাটি" };
 
 export default async function ProductsPage({ searchParams,}: {
-  searchParams: Promise<{ category?: string; on_sale?: string; search?: string }>;
+  searchParams: Promise<{ category?: string; on_sale?: string; search?: string; page?: string; }>;
 }) {
   const params = await searchParams;
+  const currentPage = Number(params.page) || 1; 
 
-  let products = await getProducts();
+  let { products, totalPages, totalProducts } = await getProducts({
+    page: currentPage,
+    per_page: 20,
+    search: params.search,
+    on_sale: params.on_sale === "true" ? true : undefined,
+    category: params.category ? Number(params.category) : undefined,
+  });
 
-if (params.on_sale === "true") products = products.filter((p) => p.on_sale);
-if (params.category) products = products.filter(
-  (p) => p.categories.some((c) => c.slug === params.category)
-);
-if (params.search) {
-const q = params.search.toLowerCase();
-products = products.filter(
-  (p) => p.name.toLowerCase().includes(q) || p.short_description.toLowerCase().includes(q)
-);
-}
+  const baseUrl = `/products?${new URLSearchParams({
+    ...(params.category && { category: params.category }),
+    ...(params.on_sale && { on_sale: params.on_sale }),
+    ...(params.search && { search: params.search }),
+  }).toString()}`;
+
+// if (params.on_sale === "true") products = products.filter((p) => p.on_sale);
+// if (params.category) products = products.filter(
+//   (p) => p.categories.some((c) => c.slug === params.category)
+// );
+// if (params.search) {
+// const q = params.search.toLowerCase();
+// products = products.filter(
+//   (p) => p.name.toLowerCase().includes(q) || p.short_description.toLowerCase().includes(q)
+// );
+// }
 
   //const categories = mockCategories;
   const categories: WCCategory[] = await getCategories();
-  console.log(categories);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -51,8 +64,8 @@ products = products.filter(
               {categories.map((cat) => (
                 <li key={cat.id}>
                   <a
-                    href={`/products?category=${cat.slug}`}
-                    className={`block text-sm px-3 py-2 rounded-lg transition-colors ${params.category === cat.slug ? "bg-[#E8F5D0] text-[#2D5016] font-semibold" : "text-[#4A5E30] hover:bg-[#F5F0E0]"}`}
+                    href={`/products?category=${cat.id}`}
+                    className={`block text-sm px-3 py-2 rounded-lg transition-colors ${params.category === String(cat.id) ? "bg-[#E8F5D0] text-[#2D5016] font-semibold" : "text-[#4A5E30] hover:bg-[#F5F0E0]"}`}
                   >
                     {cat.name} ({cat.count})
                   </a>
@@ -93,6 +106,11 @@ products = products.filter(
           )}
         </div>
       </div>
+      <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          baseUrl={baseUrl}
+        />
     </div>
   );
 }

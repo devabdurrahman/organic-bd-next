@@ -55,8 +55,12 @@ export default function ProductDetailClient({ product, related }: Props) {
               <span className="text-sm text-[#6B7C52]">{product.average_rating} ({product.rating_count} টি রিভিউ)</span>
             </div>
           )}
-
-          <p className="text-[#4A5E30] leading-relaxed mb-6">{product.description}</p>
+          
+          {/*<p className="text-[#4A5E30] leading-relaxed mb-6">{product.description}</p>*/}
+          <div 
+            className="product-description text-[#4A5E30] leading-relaxed mb-6"
+            dangerouslySetInnerHTML={{ __html: product.description }} 
+          />
 
           <div className="flex items-baseline gap-3 mb-8">
             <span className="text-4xl font-bold text-[#2D5016]">{formatBDT(product.price)}</span>

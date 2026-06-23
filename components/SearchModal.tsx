@@ -23,7 +23,9 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
 
   useEffect(() => {
     if (open && allProducts.length === 0) {
-      getProducts().then(setAllProducts);
+      getProducts().then(({ products }) => {
+        setAllProducts(products);
+      });
       getCategories().then(setAllCategories);
     }
   }, [open]);
@@ -54,6 +56,8 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
       setCategoryResults([]);
       return;
     }
+
+    if (allProducts.length === 0)
 
     setLoading(true);
 
@@ -239,6 +243,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
                                 fill
                                 className="object-cover"
                                 sizes="56px"
+                                unoptimized
                               />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center text-[#A8B896]">
