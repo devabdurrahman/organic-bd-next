@@ -62,6 +62,15 @@ export const getCategory = async (id: string) => {
   }
 }
 
+export async function getProductBySlug(slug: string) {
+  const response = await WooCommerce.getProducts({
+    slug,
+    status: "publish",
+  });
+
+  return response.data[0] ?? null;
+}
+
 export const createOrder = async (orderData: object) => {
   const response = await WooCommerce.post("orders", orderData)
   return response.data

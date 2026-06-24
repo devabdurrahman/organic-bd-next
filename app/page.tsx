@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
 import CategoryGrid from "@/components/CategoryGrid";
 import FeaturedProducts from "@/components/FeaturedProducts";
@@ -6,6 +7,12 @@ import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
 import { mockProducts, mockCategories } from "@/lib/mock-data";
 import { getProducts, getCategories } from "@/lib/products";
+
+export const metadata: Metadata = {
+  title: "জৈব পণ্যের অনলাইন দোকান",
+  description:
+    "বাংলাদেশের সেরা জৈব ও প্রাকৃতিক খাদ্যপণ্যের অনলাইন শপ।",
+};
 
 // When connecting to WooCommerce, replace mock data with:
 // import { getProducts, getCategories } from "@/lib/woocommerce";

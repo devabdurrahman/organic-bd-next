@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Metadata } from "next";
 import { Wheat, Droplets, Flower2, Cookie, Salad, Bean, ArrowRight } from "lucide-react";
 import { mockCategories, mockProducts } from "@/lib/mock-data";
 
@@ -7,7 +8,11 @@ const iconMap: Record<string, React.ElementType> = {
   "honey-sweets": Cookie, "vegetables": Salad, "pulses-nuts": Bean,
 };
 
-export const metadata = { title: "বিভাগসমূহ — সবুজ মাটি" };
+export const metadata: Metadata = {
+  title: "পণ্যের ক্যাটাগরি",
+  description:
+    "জৈব খাদ্য, মধু, মসলা ও অন্যান্য পণ্যের ক্যাটাগরি ব্রাউজ করুন।",
+};
 
 export default function CategoriesPage() {
   return (

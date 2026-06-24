@@ -1,5 +1,32 @@
-import { getProducts } from "@/lib/products";
+import { getProducts, getProductBySlug } from "@/lib/products";
 import ProductDetailClient from "./ProductDetailClient";
+import type { Metadata } from "next";
+
+
+type Props = {
+  params: Promise<{ slug: string }>;
+};
+
+export async function generateMetadata(
+  { params }: Props
+): Promise<Metadata> {
+  const { slug } = await params;
+
+  const product = await getProductBySlug(slug);
+
+  if (!product) {
+    return {
+      title: "Product Not Found",
+    };
+  }
+
+  return {
+    title: product.name,
+    description:
+      product.short_description?.replace(/<[^>]*>/g, "") ??
+      product.description?.replace(/<[^>]*>/g, ""),
+  };
+}
 
 export default async function ProductDetailPage({
   params,

@@ -1,10 +1,15 @@
+import { Metadata } from "next";
 import ProductCard from "@/components/ProductCard";
 import { mockProducts, mockCategories } from "@/lib/mock-data";
 import { getProducts, getCategories } from "@/lib/products";
 import type { WCCategory } from "@/lib/woocommerce";
 import Pagination from "@/components/Pagination";
 
-export const metadata = { title: "সকল পণ্য — সবুজ মাটি" };
+export const metadata: Metadata = {
+  title: "সকল পণ্য",
+  description:
+    "সব ধরনের জৈব ও প্রাকৃতিক পণ্য একসাথে দেখুন।",
+};
 
 export default async function ProductsPage({ searchParams,}: {
   searchParams: Promise<{ category?: string; on_sale?: string; search?: string; page?: string; }>;
