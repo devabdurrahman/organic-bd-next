@@ -6,9 +6,37 @@ import type { WCCategory } from "@/lib/woocommerce";
 import Pagination from "@/components/Pagination";
 
 export const metadata: Metadata = {
-  title: "সকল পণ্য",
+  title: "সকল পণ্য | জৈব পণ্যের অনলাইন দোকান",
   description:
     "সব ধরনের জৈব ও প্রাকৃতিক পণ্য একসাথে দেখুন।",
+  keywords: ["organic food", "organic ecommerce", "জৈব", "organic", "bangladesh", "natural food", "কৃষি"],
+  openGraph: {
+    title: "সকল পণ্য | জৈব পণ্যের অনলাইন দোকান",
+    description:
+    "সব ধরনের জৈব ও প্রাকৃতিক পণ্য একসাথে দেখুন।",
+    siteName: "Organic Ecommerce Store",
+    locale: "bn_BD",
+    type: "website",
+  },
+  twitter: {
+    card: "summery_larg_image",
+    title: "সকল পণ্য | জৈব পণ্যের অনলাইন দোকান",
+    description:
+    "সব ধরনের জৈব ও প্রাকৃতিক পণ্য একসাথে দেখুন।",
+    creator: "@devabdurrahman",
+  },
+  robots:{
+    index: true,
+    follow: true,
+    nocache: false,
+    googlBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default async function ProductsPage({ searchParams,}: {

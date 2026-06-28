@@ -12,6 +12,28 @@ export const metadata: Metadata = {
   title: "পণ্যের ক্যাটাগরি",
   description:
     "জৈব খাদ্য, মধু, মসলা ও অন্যান্য পণ্যের ক্যাটাগরি ব্রাউজ করুন।",
+  siteName: "Organic Ecommerce Store",
+  locale: "bn_BD",
+  type: "website",
+  twitter: {
+    card: "summery_larg_image",
+    title: "পণ্যের ক্যাটাগরি",
+    description:
+    "জৈব খাদ্য, মধু, মসলা ও অন্যান্য পণ্যের ক্যাটাগরি ব্রাউজ করুন।",
+    creator: "@devabdurrahman",
+  },
+  robots:{
+    index: true,
+    follow: true,
+    nocache: false,
+    googlBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function CategoriesPage() {

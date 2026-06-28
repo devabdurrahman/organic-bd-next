@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -14,6 +14,24 @@ export const metadata: Metadata = {
     description: "১০০% প্রাকৃতিক জৈব পণ্য — সারাদেশে ডেলিভারি",
     locale: "bn_BD",
     type: "website",
+  },
+  twitter: {
+    card: "summery_larg_image",
+    title: "সবুজ মাটি — জৈব পণ্যের অনলাইন দোকান",
+    description: "১০০% প্রাকৃতিক জৈব পণ্য — সারাদেশে ডেলিভারি",
+    creator: "@devabdurrahman",
+  },
+  robots:{
+    index: true,
+    follow: true,
+    nocache: false,
+    googlBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
 };
 

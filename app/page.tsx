@@ -12,6 +12,34 @@ export const metadata: Metadata = {
   title: "জৈব পণ্যের অনলাইন দোকান",
   description:
     "বাংলাদেশের সেরা জৈব ও প্রাকৃতিক খাদ্যপণ্যের অনলাইন শপ।",
+  keywords: ["organic food", "organic ecommerce", "জৈব", "organic", "bangladesh", "natural food", "কৃষি"],
+  openGraph: {
+    title: "জৈব পণ্যের অনলাইন দোকান",
+    description:
+    "বাংলাদেশের সেরা জৈব ও প্রাকৃতিক খাদ্যপণ্যের অনলাইন শপ।",
+    siteName: "Organic Ecommerce Store",
+    locale: "bn_BD",
+    type: "website",
+  },
+  twitter: {
+    card: "summery_larg_image",
+    title: "জৈব পণ্যের অনলাইন দোকান",
+    description:
+    "বাংলাদেশের সেরা জৈব ও প্রাকৃতিক খাদ্যপণ্যের অনলাইন শপ।",
+    creator: "@devabdurrahman",
+  },
+  robots:{
+    index: true,
+    follow: true,
+    nocache: false,
+    googlBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
 };
 
 // When connecting to WooCommerce, replace mock data with:

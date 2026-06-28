@@ -1,10 +1,9 @@
 import { getProducts, getProductBySlug } from "@/lib/products";
 import ProductDetailClient from "./ProductDetailClient";
-import type { Metadata } from "next";
-
+import { Metadata } from "next";
 
 type Props = {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 };
 
 export async function generateMetadata(
@@ -13,6 +12,7 @@ export async function generateMetadata(
   const { slug } = await params;
 
   const product = await getProductBySlug(slug);
+  //console.log(product);
 
   if (!product) {
     return {
@@ -25,6 +25,35 @@ export async function generateMetadata(
     description:
       product.short_description?.replace(/<[^>]*>/g, "") ??
       product.description?.replace(/<[^>]*>/g, ""),
+    openGraph: {
+      title: product.name,
+      description:
+        product.short_description?.replace(/<[^>]*>/g, "") ??
+        product.description?.replace(/<[^>]*>/g, ""),
+      siteName: "Organic Ecommerce Store",
+      locale: "bn_BD",
+      type: "website",
+    },
+    twitter: {
+      card: "summery_larg_image",
+      title: product.name,
+      description:
+        product.short_description?.replace(/<[^>]*>/g, "") ??
+        product.description?.replace(/<[^>]*>/g, ""),
+      creator: "@devabdurrahman",
+    },
+    robots:{
+      index: true,
+      follow: true,
+      nocache: false,
+      googlBot: {
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
+      },
+    },
   };
 }
 
