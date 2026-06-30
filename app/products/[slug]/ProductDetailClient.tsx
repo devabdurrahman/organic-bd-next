@@ -18,7 +18,8 @@ export default function ProductDetailClient({ product, related }: Props) {
   const { addItem } = useCart();
   const [qty, setQty] = useState(1);
 
-  const img = product.images[0]?.src ?? "/placeholder.svg";
+  //const img = product.images[0]?.src ?? "/placeholder.svg";
+  const [activeImg, setActiveImg] = useState(product.images[0]?.src ?? "/placeholder.svg");
   const rating = parseFloat(product.average_rating);
 
   return (
@@ -29,12 +30,48 @@ export default function ProductDetailClient({ product, related }: Props) {
 
       <div className="grid md:grid-cols-2 gap-12 mb-16">
         {/* Image */}
-        <div className="relative aspect-square rounded-3xl overflow-hidden bg-[#F5F0E0]">
-          <Image src={img} alt={product.name} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" unoptimized />
-          {product.on_sale && (
-            <span className="absolute top-4 left-4 bg-[#E8641A] text-white text-sm font-bold px-3 py-1 rounded-lg">
-              বিশেষ ছাড়
-            </span>
+        <div className="flex flex-col gap-4">
+          {/* Main image */}
+          <div className="relative aspect-square rounded-3xl overflow-hidden bg-[#F5F0E0]">
+            <Image
+              src={activeImg}
+              alt={product.name}
+              fill
+              className="object-cover transition-opacity duration-300"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              unoptimized
+            />
+            {product.on_sale && (
+              <span className="absolute top-4 left-4 bg-[#E8641A] text-white text-sm font-bold px-3 py-1 rounded-lg">
+                বিশেষ ছাড়
+              </span>
+            )}
+          </div>
+
+          {/* Thumbnails — only show if more than 1 image */}
+          {product.images.length > 1 && (
+            <div className="flex gap-3 overflow-x-auto pb-1">
+              {product.images.map((img) => (
+                <button
+                  key={img.id}
+                  onClick={() => setActiveImg(img.src)}
+                  className={`relative w-20 h-20 shrink-0 rounded-xl overflow-hidden border-2 transition-all ${
+                    activeImg === img.src
+                      ? "border-[#2D5016] shadow-md"
+                      : "border-[#E8E2CC] hover:border-[#A8D86A]"
+                  }`}
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt || product.name}
+                    fill
+                    className="object-cover"
+                    sizes="80px"
+                    unoptimized
+                  />
+                </button>
+              ))}
+            </div>
           )}
         </div>
 
