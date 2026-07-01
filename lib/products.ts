@@ -2,7 +2,7 @@
 import WooCommerceRestApi from 'woocommerce-rest-ts-api'
 
 const WooCommerce = new WooCommerceRestApi({
-  url: 'https://eurspec.com/',
+  url: 'https://worldclasscreation.com/',
   consumerKey: process.env.WC_CONSUMER_KEY as string,
   consumerSecret: process.env.WC_CONSUMER_SECRET as string,
   version: 'wc/v3',

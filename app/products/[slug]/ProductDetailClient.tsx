@@ -39,7 +39,7 @@ export default function ProductDetailClient({ product, related }: Props) {
               fill
               className="object-cover transition-opacity duration-300"
               sizes="(max-width: 768px) 100vw, 50vw"
-              unoptimized
+              // unoptimized
             />
             {product.on_sale && (
               <span className="absolute top-4 left-4 bg-[#E8641A] text-white text-sm font-bold px-3 py-1 rounded-lg">
@@ -67,7 +67,7 @@ export default function ProductDetailClient({ product, related }: Props) {
                     fill
                     className="object-cover"
                     sizes="80px"
-                    unoptimized
+                    // unoptimized
                   />
                 </button>
               ))}

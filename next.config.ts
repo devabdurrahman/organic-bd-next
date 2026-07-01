@@ -9,9 +9,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "eurspec.com",
+        hostname: "worldclasscreation.com",
       },
     ],
+    unoptimized: true,
   },
 };
 
