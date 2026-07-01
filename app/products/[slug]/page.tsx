@@ -46,7 +46,7 @@ export async function generateMetadata(
       index: true,
       follow: true,
       nocache: false,
-      googlBot: {
+      googleBot: {
         index: true,
         follow: true,
         "max-snippet": -1,
