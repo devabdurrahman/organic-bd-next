@@ -41,7 +41,7 @@ export interface WCProduct {
   regular_price: string;
   sale_price: string;
   on_sale: boolean;
-  stock_status: "instock" | "outofstock" | "onbackorder";
+  stock_status: string;
   stock_quantity: number | null;
   images: Array<{ id: number; src: string; alt: string }>;
   categories: Array<{ id: number; name: string; slug: string }>;
