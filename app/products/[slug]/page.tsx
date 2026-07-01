@@ -35,7 +35,7 @@ export async function generateMetadata(
       type: "website",
     },
     twitter: {
-      card: "summery_larg_image",
+      card: "summary_large_image",
       title: product.name,
       description:
         product.short_description?.replace(/<[^>]*>/g, "") ??

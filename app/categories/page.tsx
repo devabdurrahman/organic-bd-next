@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   locale: "bn_BD",
   type: "website",
   twitter: {
-    card: "summery_larg_image",
+    card: "summary_large_image",
     title: "পণ্যের ক্যাটাগরি",
     description:
     "জৈব খাদ্য, মধু, মসলা ও অন্যান্য পণ্যের ক্যাটাগরি ব্রাউজ করুন।",

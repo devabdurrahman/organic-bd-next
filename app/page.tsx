@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summery_larg_image",
+    card: "summary_large_image",
     title: "জৈব পণ্যের অনলাইন দোকান",
     description:
     "বাংলাদেশের সেরা জৈব ও প্রাকৃতিক খাদ্যপণ্যের অনলাইন শপ।",

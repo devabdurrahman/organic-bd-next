@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summery_larg_image",
+    card: "summary_large_image",
     title: "সবুজ মাটি — জৈব পণ্যের অনলাইন দোকান",
     description: "১০০% প্রাকৃতিক জৈব পণ্য — সারাদেশে ডেলিভারি",
     creator: "@devabdurrahman",
