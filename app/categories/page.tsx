@@ -12,9 +12,11 @@ export const metadata: Metadata = {
   title: "পণ্যের ক্যাটাগরি",
   description:
     "জৈব খাদ্য, মধু, মসলা ও অন্যান্য পণ্যের ক্যাটাগরি ব্রাউজ করুন।",
-  siteName: "Organic Ecommerce Store",
-  locale: "bn_BD",
-  type: "website",
+  openGraph: {
+    siteName: "Organic Ecommerce Store",
+    locale: "bn_BD",
+    type: "website",
+  },  
   twitter: {
     card: "summary_large_image",
     title: "পণ্যের ক্যাটাগরি",
