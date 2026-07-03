@@ -62,7 +62,7 @@ export default function ProductDetailClient({ product, related }: Props) {
                   }`}
                 >
                   <Image
-                    src={img.src}
+                    src={img.src ?? "/placeholder.svg"}
                     alt={img.alt || product.name}
                     fill
                     className="object-cover"
