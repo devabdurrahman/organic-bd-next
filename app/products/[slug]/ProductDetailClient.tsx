@@ -54,7 +54,7 @@ export default function ProductDetailClient({ product, related }: Props) {
               {product.images.map((img) => (
                 <button
                   key={img.id}
-                  onClick={() => setActiveImg(img.src)}
+                  onClick={() => setActiveImg(img.src ?? "/placeholder.svg")}
                   className={`relative w-20 h-20 shrink-0 rounded-xl overflow-hidden border-2 transition-all ${
                     activeImg === (img.src ?? "/placeholder.svg")
                       ? "border-[#2D5016] shadow-md"
