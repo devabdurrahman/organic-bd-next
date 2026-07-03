@@ -87,3 +87,8 @@
 //     </div>
 //   );
 // }
+export default function CategoriesPage(){
+	return (
+		<h1>Category Page</h1>
+		);
+}
