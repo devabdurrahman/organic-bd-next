@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import ProductCard from "@/components/ProductCard";
-import { mockProducts, mockCategories } from "@/lib/mock-data";
+// import { mockProducts, mockCategories } from "@/lib/mock-data";
 import { getProducts, getCategories } from "@/lib/products";
 import type { WCCategory } from "@/lib/woocommerce";
 import Pagination from "@/components/Pagination";

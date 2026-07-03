@@ -5,7 +5,7 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 import WhyUs from "@/components/WhyUs";
 import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
-import { mockProducts, mockCategories } from "@/lib/mock-data";
+// import { mockProducts, mockCategories } from "@/lib/mock-data";
 import { getProducts, getCategories } from "@/lib/products";
 
 export const metadata: Metadata = {
