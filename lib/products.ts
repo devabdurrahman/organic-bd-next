@@ -38,7 +38,7 @@ export async function getProducts(params?: {
 
 export const getProduct = async (id: string) => {
   try {
-    const product = await WooCommerce.getProduct(id)
+    const product = await WooCommerce.getProduct(Number(id))
     return product.data
   } catch (error) {
     console.error("Failed to fetch product:", error)
