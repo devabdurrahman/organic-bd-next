@@ -7,6 +7,11 @@ import { formatBDT } from "@/lib/woocommerce";
 import { getProducts, getCategories } from "@/lib/products";
 import type { WCProduct, WCCategory } from "@/lib/woocommerce";
 
+interface SearchModalProps {
+  open: boolean;
+  onClose: () => void;
+}
+
 const POPULAR_SEARCHES = ["BMW", "MERCEDES BENZ", "TESLA", "TOYOTA", "BYD"];
 
 export default function SearchModal({ open, onClose }: SearchModalProps) {
