@@ -80,7 +80,7 @@ export default function CheckoutPage() {
       ],
     };
 
-    const order = await createOrder(orderPayload);
+    const order = await createOrder(orderPayload as Record<string, unknown>);
 
       if (order.id) {
         clearCart();

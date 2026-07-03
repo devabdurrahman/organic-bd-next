@@ -83,7 +83,7 @@ export async function getOnSaleProducts(limit = 8) {
   return products;
 }
 
-export const createOrder = async (orderData: object) => {
+export const createOrder = async (orderData: Record<string, unknown>) => {
   const response = await WooCommerce.post("orders", orderData)
   return response.data
 }
