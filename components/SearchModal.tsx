@@ -33,7 +33,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
       });
       getCategories().then(setAllCategories);
     }
-  }, [open]);
+  }, [open, allProducts.length]);
 
   useEffect(() => {
     if (open) {
@@ -62,25 +62,25 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
       return;
     }
 
-    if (allProducts.length === 0)
+    if (allProducts.length === 0) return;
 
     setLoading(true);
 
     const matchedProducts = allProducts.filter(
       (p) =>
-        p.name.toLowerCase().includes(trimmed) ||
-        p.short_description.toLowerCase().includes(trimmed) ||
-        p.categories.some((c) => c.name.toLowerCase().includes(trimmed))
+        p.name?.toLowerCase().includes(trimmed) ||
+        p.short_description?.toLowerCase().includes(trimmed) ||
+        p.categories?.some((c) => c.name?.toLowerCase().includes(trimmed))
     ).slice(0, 6);
 
     const matchedCats = allCategories.filter((c) =>
-      c.name.toLowerCase().includes(trimmed)
+      c.name?.toLowerCase().includes(trimmed)
     );
 
     setResults(matchedProducts);
     setCategoryResults(matchedCats);
     setLoading(false);
-  }, [allProducts, allCategories]); 
+  }, [allProducts, allCategories]);
 
   useEffect(() => {
     const timer = setTimeout(() => search(query), 200);
@@ -124,7 +124,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="পণ্য খুঁজুন... (যেমন: মধু, চাল, তেল)"
+              placeholder="পণ্য খুঁজুন..."
               className="flex-1 bg-transparent text-[#2D3A1E] placeholder:text-[#A8B896] text-base outline-none"
             />
             {query && (
@@ -169,7 +169,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
                   {allCategories.map((cat) => (
                     <Link
                       key={cat.id}
-                      href={`/products?category=${cat.slug}`}
+                      href={`/products?category=${cat.id}`}
                       onClick={handleResultClick}
                       className="flex items-center gap-2 text-sm text-[#4A5E30] bg-white border border-[#E8E2CC] px-3 py-2 rounded-xl hover:border-[#2D5016] hover:text-[#2D5016] transition-colors"
                     >
@@ -213,7 +213,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
                       {categoryResults.map((cat) => (
                         <Link
                           key={cat.id}
-                          href={`/products?category=${cat.slug}`}
+                          href={`/products?category=${cat.id}`}
                           onClick={handleResultClick}
                           className="flex items-center gap-1.5 text-sm bg-[#E8F5D0] text-[#2D5016] font-medium px-3 py-1.5 rounded-full hover:bg-[#D0ECA8] transition-colors"
                         >
@@ -241,10 +241,10 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
                         >
                           {/* Thumbnail */}
                           <div className="relative w-14 h-14 rounded-lg overflow-hidden bg-[#F0EBD8] shrink-0">
-                            {product.images[0]?.src ? (
+                            {product.images?.[0]?.src ? (
                               <Image
                                 src={product.images[0].src}
-                                alt={product.name}
+                                alt={product.images[0].alt ?? product.name ?? "product"}
                                 fill
                                 className="object-cover"
                                 sizes="56px"
@@ -263,14 +263,16 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
                               {product.name}
                             </p>
                             <p className="text-xs text-[#7A8C5E] mt-0.5 line-clamp-1">
-                              {product.categories[0]?.name}
+                              {product.categories?.[0]?.name}
                             </p>
                           </div>
 
                           {/* Price */}
                           <div className="text-right shrink-0">
-                            <p className="font-bold text-[#2D5016] text-sm">{formatBDT(product.price)}</p>
-                            {product.on_sale && (
+                            {product.price && (
+                              <p className="font-bold text-[#2D5016] text-sm">{formatBDT(product.price)}</p>
+                            )}
+                            {product.on_sale && product.regular_price && (
                               <p className="text-xs text-[#9A9A82] line-through">{formatBDT(product.regular_price)}</p>
                             )}
                           </div>
