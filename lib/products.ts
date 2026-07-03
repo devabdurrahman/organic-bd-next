@@ -1,39 +1,40 @@
 'use server'
 import WooCommerceRestApi from 'woocommerce-rest-ts-api'
+import type { Products } from "woocommerce-rest-ts-api";
 
 const WooCommerce = new WooCommerceRestApi({
-  url: 'https://worldclasscreation.com/',
+  url: process.env.NEXT_PUBLIC_WC_URL as string,
   consumerKey: process.env.WC_CONSUMER_KEY as string,
   consumerSecret: process.env.WC_CONSUMER_SECRET as string,
   version: 'wc/v3',
 })
 
-export const getProducts = async (params?: {
+export async function getProducts(params?: {
   per_page?: number;
   page?: number;
   category?: number;
+  tag?: number;
   on_sale?: boolean;
+  featured?: boolean;
   search?: string;
-  status?: string;
-}) => {
-  const query: Record<string, unknown> = {
-    per_page: params?.per_page ?? 20,
-    page: params?.page ?? 1,
-    status: params?.status ?? "publish",
-  };
+  orderby?: string;
+  order?: "asc" | "desc";
+}): Promise<{ products: Products[]; totalPages: number; totalProducts: number }> {
+  const query = new URLSearchParams();
+  if (params) {
+    Object.entries(params).forEach(([k, v]) => {
+      if (v !== undefined) query.set(k, String(v));
+    });
+  }
 
-  if (params?.search) query.search = params.search;
-  if (params?.category) query.category = params.category;
-  if (params?.on_sale === true) query.on_sale = true;
-
-  const response = await WooCommerce.getProducts(query);
+  const response = await WooCommerce.getProducts(Object.fromEntries(query));
 
   return {
-    products: response.data,
+    products: response.data as Products[],
     totalPages: Number(response.headers["x-wp-totalpages"]),
     totalProducts: Number(response.headers["x-wp-total"]),
   };
-};
+}
 
 export const getProduct = async (id: string) => {
   try {
@@ -69,6 +70,16 @@ export async function getProductBySlug(slug: string) {
   });
 
   return response.data[0] ?? null;
+}
+
+export async function getFeaturedProducts(limit = 8) {
+  const { products } = await getProducts({ featured: true, per_page: limit });
+  return products;
+}
+
+export async function getOnSaleProducts(limit = 8) {
+  const { products } = await getProducts({ on_sale: true, per_page: limit });
+  return products;
 }
 
 export const createOrder = async (orderData: object) => {
