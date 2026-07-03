@@ -48,8 +48,9 @@ export const getProduct = async (id: string) => {
 
 export const getCategories = async () => {
   const response = await WooCommerce.get("products/categories", {
+    per_page: 100,
     hide_empty: true,
-  })
+  } as Record<string, unknown>)
   return response.data
 }
 
