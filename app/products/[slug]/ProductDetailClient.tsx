@@ -56,7 +56,7 @@ export default function ProductDetailClient({ product, related }: Props) {
                   key={img.id}
                   onClick={() => setActiveImg(img.src)}
                   className={`relative w-20 h-20 shrink-0 rounded-xl overflow-hidden border-2 transition-all ${
-                    activeImg === img.src
+                    activeImg === (img.src ?? "/placeholder.svg")
                       ? "border-[#2D5016] shadow-md"
                       : "border-[#E8E2CC] hover:border-[#A8D86A]"
                   }`}
