@@ -9,7 +9,6 @@ const WooCommerce = new WooCommerceRestApi({
   consumerSecret: process.env.WC_CONSUMER_SECRET as string,
   version: 'wc/v3',
   axiosConfig: {
-    // cache responses for 60 seconds
     headers: {
       'Cache-Control': 'max-age=60',
     }

@@ -47,7 +47,7 @@ export default async function ProductsPage({ searchParams,}: {
 
   let { products, totalPages, totalProducts } = await getProducts({
     page: currentPage,
-    per_page: 20,
+    per_page: 8,
     search: params.search,
     on_sale: params.on_sale === "true" ? true : undefined,
     category: params.category ? Number(params.category) : undefined,
