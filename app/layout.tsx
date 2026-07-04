@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
 import { Noto_Sans_Bengali } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 
 const notoSansBengali = Noto_Sans_Bengali({
   weight: ["300", "400", "500", "600", "700"],
@@ -49,6 +50,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
       </head>
       <body className={`${notoSansBengali.className} bg-[#FAFAF7] text-[#2D3A1E] antialiased`}>
+      <NextTopLoader
+          color="#2D5016"
+          shadow="0 0 10px #2D5016, 0 0 5px #A8D86A"
+          height={3}
+          showSpinner={false}
+        />
         <CartProvider>
           <Navbar />
           <main className="min-h-screen">{children}</main>
