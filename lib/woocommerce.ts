@@ -1,7 +1,16 @@
 import type { Products, ProductsCategory } from "woocommerce-rest-ts-api";
 
 export type WCProduct = Products;
-export type WCCategory = ProductsCategory;
+
+export interface WCCategory {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  count: number;
+  parent: number;
+  image: { id: number; src: string; alt: string } | null;
+}
 
 // const WC_URL = process.env.NEXT_PUBLIC_WC_URL || "https://yourstore.com";
 // const WC_KEY = process.env.WC_CONSUMER_KEY || "";

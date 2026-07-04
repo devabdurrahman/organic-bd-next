@@ -1,6 +1,7 @@
 'use server'
-import WooCommerceRestApi from 'woocommerce-rest-ts-api'
+import WooCommerceRestApi from 'woocommerce-rest-ts-api';
 import type { Products } from "woocommerce-rest-ts-api";
+import type { WCCategory } from "./woocommerce";
 
 const WooCommerce = new WooCommerceRestApi({
   url: process.env.NEXT_PUBLIC_WC_URL as string,
@@ -46,12 +47,12 @@ export const getProduct = async (id: string) => {
   }
 }
 
-export const getCategories = async () => {
+export const getCategories = async (): Promise<WCCategory[]> => {
   const response = await WooCommerce.get("products/categories", {
     per_page: 100,
     hide_empty: true,
   } as Record<string, unknown>)
-  return response.data
+  return response.data as WCCategory[]
 }
 
 export const getCategory = async (id: string) => {
