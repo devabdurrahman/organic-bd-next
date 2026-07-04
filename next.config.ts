@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     optimizeCss: true,
   },
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
@@ -14,8 +15,7 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "headless1.rpixels.online",
       },
-    ],
-    unoptimized: true,
+    ],  
   },
 };
 
