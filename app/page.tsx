@@ -51,14 +51,14 @@ export default async function HomePage() {
       <HeroSection />
       <CategoryGrid categories={categories} />
       <FeaturedProducts
-        products={products.slice(0, 17)}
+        products={products.slice(0, 8)}
         title="জনপ্রিয় পণ্যসমূহ"
         subtitle="আমাদের গ্রাহকদের সবচেয়ে পছন্দের পণ্য"
       />
       <WhyUs />
       <FeaturedProducts
         // products={products.filter((p) => p.on_sale).slice(0, 4)}
-        products={products.slice(0, 7)}
+        products={products.slice(0, 4)}
         title="বিশেষ ছাড়ের পণ্য"
         subtitle="সীমিত সময়ের জন্য বিশেষ মূল্য হ্রাস"
         viewAllHref="/products?on_sale=true"
