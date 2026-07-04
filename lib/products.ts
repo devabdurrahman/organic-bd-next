@@ -8,7 +8,13 @@ const WooCommerce = new WooCommerceRestApi({
   consumerKey: process.env.WC_CONSUMER_KEY as string,
   consumerSecret: process.env.WC_CONSUMER_SECRET as string,
   version: 'wc/v3',
-})
+  axiosConfig: {
+    // cache responses for 60 seconds
+    headers: {
+      'Cache-Control': 'max-age=60',
+    }
+  },
+});
 
 export async function getProducts(params?: {
   per_page?: number;
