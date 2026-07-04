@@ -5,7 +5,6 @@ import FeaturedProducts from "@/components/FeaturedProducts";
 import WhyUs from "@/components/WhyUs";
 import Testimonials from "@/components/Testimonials";
 import CTABanner from "@/components/CTABanner";
-// import { mockProducts, mockCategories } from "@/lib/mock-data";
 import { getProducts, getCategories } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -42,14 +41,10 @@ export const metadata: Metadata = {
   },
 };
 
-// When connecting to WooCommerce, replace mock data with:
-// import { getProducts, getCategories } from "@/lib/woocommerce";
 
 export default async function HomePage() {
   const {products} = await getProducts();
   const categories = await getCategories();
-  // const products = mockProducts;
-  //const categories = mockCategories;
 
   return (
     <>

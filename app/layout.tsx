@@ -3,6 +3,14 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
+import { Noto_Sans_Bengali } from "next/font/google";
+
+const notoSansBengali = Noto_Sans_Bengali({
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["bengali"],
+  display: "swap",
+  preload: true,
+});
 
 export const metadata: Metadata = {
   title: "সবুজ মাটি — জৈব পণ্যের অনলাইন দোকান",
@@ -39,11 +47,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="bn">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-[#FAFAF7] text-[#2D3A1E] antialiased" style={{ fontFamily: "'Noto Sans Bengali', system-ui, sans-serif" }}>
+      <body className={`${notoSansBengali.className} bg-[#FAFAF7] text-[#2D3A1E] antialiased`}>
         <CartProvider>
           <Navbar />
           <main className="min-h-screen">{children}</main>
