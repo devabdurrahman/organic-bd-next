@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "worldclasscreation.com",
+        hostname: "headless1.rpixels.online",
       },
     ],
     unoptimized: true,
