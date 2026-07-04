@@ -1,4 +1,4 @@
-import type { Products, ProductsCategory } from "woocommerce-rest-ts-api";
+import type { Products } from "woocommerce-rest-ts-api";
 
 export type WCProduct = Products;
 
