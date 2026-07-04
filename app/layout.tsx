@@ -51,11 +51,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className={`${notoSansBengali.className} bg-[#FAFAF7] text-[#2D3A1E] antialiased`}>
       <NextTopLoader
-          color="#2D5016"
-          shadow="0 0 10px #2D5016, 0 0 5px #A8D86A"
-          height={3}
-          showSpinner={false}
-        />
+        color="#A8D86A"
+        shadow="0 0 10px #A8D86A, 0 0 5px #ffffff"
+        height={3}
+        showSpinner={false}
+      />
         <CartProvider>
           <Navbar />
           <main className="min-h-screen">{children}</main>
