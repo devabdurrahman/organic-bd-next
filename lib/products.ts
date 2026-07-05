@@ -86,7 +86,7 @@ export const getProducts = unstable_cache(
 //   { revalidate: 60 }
 // );
 
-export const getProduct = (id: string) => unstable_cache(
+export const getProduct = async (id: string) => unstable_cache(
   async () => {
     try {
       const product = await WooCommerce.getProduct(Number(id))
@@ -126,7 +126,7 @@ export const getCategories = unstable_cache(
 //   { revalidate: 300 }
 // );
 
-export const getCategory = (id: string) => unstable_cache(
+export const getCategory = async (id: string) => unstable_cache(
   async () => {
     try {
       const response = await WooCommerce.get(`products/categories/${id}`)
