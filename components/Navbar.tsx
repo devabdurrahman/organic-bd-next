@@ -21,7 +21,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-[#FAFAF7] border-b border-[#D4C9A8]">
+      <header className="top-0 z-50 bg-[#FAFAF7] border-b border-[#D4C9A8]">
         {/* Top bar */}
         <div className="bg-[#2D5016] text-[#E8F5D0] text-sm py-2">
           <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
