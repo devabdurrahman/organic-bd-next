@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { ShoppingCart, Menu, X, Leaf, Search, Phone } from "lucide-react";
+import { ShoppingCart, Menu, X, Leaf, Search, Phone, User } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import SearchModal from "@/components/SearchModal";
 
@@ -78,6 +78,13 @@ export default function Navbar() {
             >
               <Search size={18} />
             </button>
+
+            <Link
+              href="/account"
+              className="sm:hidden flex items-center text-[#6B7C52] hover:text-[#2D5016] transition-colors"
+            >
+              <User size={17} />
+            </Link>
 
             <Link
               href="/cart"
