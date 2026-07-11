@@ -55,18 +55,23 @@ export const getProducts = unstable_cache(
     orderby?: string;
     order?: "asc" | "desc";
   }): Promise<{ products: Products[]; totalPages: number; totalProducts: number }> => {
-    const query = new URLSearchParams();
-    if (params) {
-      Object.entries(params).forEach(([k, v]) => {
-        if (v !== undefined) query.set(k, String(v));
-      });
+    try{
+      const query = new URLSearchParams();
+      if (params) {
+        Object.entries(params).forEach(([k, v]) => {
+          if (v !== undefined) query.set(k, String(v));
+        });
+      }
+      const response = await WooCommerce.getProducts(Object.fromEntries(query));
+      return {
+        products: response.data as Products[],
+        totalPages: Number(response.headers["x-wp-totalpages"]),
+        totalProducts: Number(response.headers["x-wp-total"]),
+      };
+    }catch(error){
+      console.error("Failed to fetch products:", error)
+      return { products: [], totalPages: 0, totalProducts: 0 }
     }
-    const response = await WooCommerce.getProducts(Object.fromEntries(query));
-    return {
-      products: response.data as Products[],
-      totalPages: Number(response.headers["x-wp-totalpages"]),
-      totalProducts: Number(response.headers["x-wp-total"]),
-    };
   },
   ["products"],
   { revalidate: 60 }
@@ -102,11 +107,16 @@ export const getProduct = async (id: string) => unstable_cache(
 
 export const getCategories = unstable_cache(
   async (): Promise<WCCategory[]> => {
-    const response = await WooCommerce.get("products/categories", {
-      per_page: 100,
-      hide_empty: true,
-    } as Record<string, unknown>)
-    return response.data as WCCategory[]
+    try{
+      const response = await WooCommerce.get("products/categories", {
+        per_page: 100,
+        hide_empty: true,
+      } as Record<string, unknown>)
+      return response.data as WCCategory[]
+    }catch(error){
+      console.error("Failed to fetch categories:", error)
+      return []
+    }
   },
   ["categories"],
   { revalidate: 300 }
