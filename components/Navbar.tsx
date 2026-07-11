@@ -81,7 +81,7 @@ export default function Navbar() {
 
             <Link
               href="/account"
-              className="sm:hidden flex items-center text-[#6B7C52] hover:text-[#2D5016] transition-colors"
+              className="flex items-center text-[#6B7C52] hover:text-[#2D5016] transition-colors"
             >
               <User size={17} />
             </Link>
