@@ -12,6 +12,18 @@ export interface WCCategory {
   image: { id: number; src: string; alt: string } | null;
 }
 
+export interface WCVariation {
+  id: number;
+  price?: string;
+  regular_price?: string;
+  sale_price?: string;
+  on_sale?: boolean;
+  stock_status?: string;
+  stock_quantity?: number | null;
+  attributes?: Array<{ id?: number; name?: string; option?: string }>;
+  images?: Array<{ id?: number; src?: string; alt?: string }>;
+}
+
 // const WC_URL = process.env.NEXT_PUBLIC_WC_URL || "https://yourstore.com";
 // const WC_KEY = process.env.WC_CONSUMER_KEY || "";
 // const WC_SECRET = process.env.WC_CONSUMER_SECRET || "";

@@ -7,12 +7,11 @@ import { ShoppingCart, Star, Minus, Plus, ArrowLeft, Truck, ShieldCheck } from "
 import { useCart } from "@/context/CartContext";
 import { formatBDT } from "@/lib/woocommerce";
 import ProductCard from "@/components/ProductCard";
-import type { WCProduct } from "@/lib/woocommerce";
-import ProductsVariations from "woocommerce-rest-ts-api";
+import type { WCProduct, WCVariation } from "@/lib/woocommerce";
 
 interface Props {
   product: WCProduct;
-  variations: ProductsVariations[];
+  variations: WCVariation[];
   related: WCProduct[];
 }
 
@@ -20,7 +19,7 @@ export default function ProductDetailClient({ product, variations, related }: Pr
   const { addItem } = useCart();
   const [qty, setQty] = useState(1);
   const [selectedAttributes, setSelectedAttributes] = useState<Record<string, string>>({});
-  const [selectedVariation, setSelectedVariation] = useState<ProductsVariations | null>(null);
+  const [selectedVariation, setSelectedVariation] = useState<WCVariation | null>(null);
 
   //const img = product.images[0]?.src ?? "/placeholder.svg";
   const [activeImg, setActiveImg] = useState(product.images[0]?.src ?? "/placeholder.svg");

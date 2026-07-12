@@ -1,10 +1,10 @@
 'use server'
-import WooCommerceRestApi, { WooRestApiVersion } from 'woocommerce-rest-ts-api';
-import type { Products, ProductsVariations } from "woocommerce-rest-ts-api";
-import type { WCCategory } from "./woocommerce";
+import WooCommerceRestApi from 'woocommerce-rest-ts-api';
+import type { Products, WooRestApiOptions } from "woocommerce-rest-ts-api";
+import type { WCCategory, WCVariation } from "./woocommerce";
 import { unstable_cache } from "next/cache";
 
-const WooCommerce = new WooCommerceRestApi<"wc/v3">({
+const WooCommerce = new WooCommerceRestApi<WooRestApiOptions>({
   url: process.env.NEXT_PUBLIC_WC_URL as string,
   consumerKey: process.env.WC_CONSUMER_KEY as string,
   consumerSecret: process.env.WC_CONSUMER_SECRET as string,
@@ -112,7 +112,7 @@ export const getProductVariations = async (productId: number) => unstable_cache(
         `products/${productId}/variations`,
         { per_page: 100 } as Record<string, unknown>
       )
-      return response.data as ProductsVariations[]
+      return response.data as WCVariation[]
     } catch (error) {
       console.error("Failed to fetch variations:", error)
       return []
