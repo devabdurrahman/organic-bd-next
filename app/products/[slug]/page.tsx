@@ -1,4 +1,4 @@
-import { getProducts, getProductBySlug } from "@/lib/products";
+import { getProducts, getProductBySlug, getProductVariations } from "@/lib/products";
 import ProductDetailClient from "./ProductDetailClient";
 import { Metadata } from "next";
 
@@ -79,5 +79,9 @@ export default async function ProductDetailPage({
     );
   }
 
-  return <ProductDetailClient product={product} related={related} />;
+  const variations = product.type === "variable"
+    ? await getProductVariations(product.id!)
+    : [];
+
+  return <ProductDetailClient product={product} variations={variations} related={related} />;
 }

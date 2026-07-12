@@ -2,10 +2,12 @@
 
 import React, { createContext, useContext, useReducer, useEffect } from "react";
 import type { WCProduct } from "@/lib/woocommerce";
+import type { ProductsVariations } from "woocommerce-rest-ts-api";
 
 export interface CartItem {
   product: WCProduct;
   quantity: number;
+  variation?: ProductsVariations;
 }
 
 interface CartState {
@@ -13,14 +15,14 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: "ADD_ITEM"; product: WCProduct; quantity?: number }
-  | { type: "REMOVE_ITEM"; productId: number }
-  | { type: "UPDATE_QTY"; productId: number; quantity: number }
-  | { type: "CLEAR_CART" };
+  | { type: "ADD_ITEM"; product: WCProduct; quantity?: number; variation?: ProductsVariations }
+  | { type: "REMOVE_ITEM"; productId: number; variationId?: number }
+  | { type: "UPDATE_QTY"; productId: number; variationId?: number; quantity: number }
+  | { type: "CLEAR_CART" }
 
 const CartContext = createContext<{
   state: CartState;
-  addItem: (product: WCProduct, qty?: number) => void;
+  addItem: (product: WCProduct, qty?: number, variation?: ProductsVariations) => void;
   removeItem: (productId: number) => void;
   updateQty: (productId: number, qty: number) => void;
   clearCart: () => void;
@@ -31,17 +33,26 @@ const CartContext = createContext<{
 function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case "ADD_ITEM": {
-      const existing = state.items.find((i) => i.product.id === action.product.id);
+      const existing = state.items.find(
+        (i) =>
+          i.product.id === action.product.id &&
+          i.variation?.id === action.variation?.id
+      );
       if (existing) {
         return {
           items: state.items.map((i) =>
-            i.product.id === action.product.id
+            i.product.id === action.product.id && i.variation?.id === action.variation?.id
               ? { ...i, quantity: i.quantity + (action.quantity ?? 1) }
               : i
           ),
         };
       }
-      return { items: [...state.items, { product: action.product, quantity: action.quantity ?? 1 }] };
+      return {
+        items: [
+          ...state.items,
+          { product: action.product, quantity: action.quantity ?? 1, variation: action.variation },
+        ],
+      };
     }
     case "REMOVE_ITEM":
       return { items: state.items.filter((i) => i.product.id !== action.productId) };
@@ -77,8 +88,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("organic-bd-cart", JSON.stringify(state.items));
   }, [state.items]);
 
-  const addItem = (product: WCProduct, qty = 1) =>
-    dispatch({ type: "ADD_ITEM", product, quantity: qty });
+  const addItem = (product: WCProduct, qty = 1, variation?: ProductsVariations) =>
+  dispatch({ type: "ADD_ITEM", product, quantity: qty, variation });
   const removeItem = (productId: number) => dispatch({ type: "REMOVE_ITEM", productId });
   const updateQty = (productId: number, quantity: number) =>
     dispatch({ type: "UPDATE_QTY", productId, quantity });

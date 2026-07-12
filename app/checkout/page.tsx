@@ -69,6 +69,7 @@ export default function CheckoutPage() {
       },
       line_items: state.items.map((item) => ({
         product_id: item.product.id,
+        variation_id: item.variation?.id,
         quantity: item.quantity,
       })),
       shipping_lines: [

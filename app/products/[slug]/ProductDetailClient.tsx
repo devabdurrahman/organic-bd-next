@@ -8,19 +8,34 @@ import { useCart } from "@/context/CartContext";
 import { formatBDT } from "@/lib/woocommerce";
 import ProductCard from "@/components/ProductCard";
 import type { WCProduct } from "@/lib/woocommerce";
+import type { ProductsVariations } from "woocommerce-rest-ts-api";
 
 interface Props {
   product: WCProduct;
+  variations: ProductsVariations[];
   related: WCProduct[];
 }
 
-export default function ProductDetailClient({ product, related }: Props) {
+export default function ProductDetailClient({ product, variations, related }: Props) {
   const { addItem } = useCart();
   const [qty, setQty] = useState(1);
+  const [selectedAttributes, setSelectedAttributes] = useState<Record<string, string>>({});
+  const [selectedVariation, setSelectedVariation] = useState<ProductsVariations | null>(null);
 
   //const img = product.images[0]?.src ?? "/placeholder.svg";
   const [activeImg, setActiveImg] = useState(product.images[0]?.src ?? "/placeholder.svg");
   const rating = parseFloat(product.average_rating);
+
+  useEffect(() => {
+    if (variations.length === 0) return;
+
+    const matched = variations.find((v) =>
+      v.attributes?.every(
+        (attr) => selectedAttributes[attr.name ?? ""] === attr.option
+      )
+    );
+    setSelectedVariation(matched ?? null);
+  }, [selectedAttributes, variations]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
@@ -99,6 +114,63 @@ export default function ProductDetailClient({ product, related }: Props) {
             dangerouslySetInnerHTML={{ __html: product.description }} 
           />
 
+          {/* Variation selectors — only for variable products */}
+          {product.type === "variable" && product.attributes && (
+            <div className="space-y-4 mb-6">
+              {product.attributes
+                .filter((attr) => attr.variation)
+                .map((attr) => (
+                  <div key={attr.id}>
+                    <label className="block text-sm font-medium text-[#4A5E30] mb-2">
+                      {attr.name}
+                      {selectedAttributes[attr.name ?? ""] && (
+                        <span className="ml-2 text-[#2D5016] font-semibold">
+                          : {selectedAttributes[attr.name ?? ""]}
+                        </span>
+                      )}
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {attr.options?.map((option) => (
+                        <button
+                          key={option}
+                          onClick={() =>
+                            setSelectedAttributes((prev) => ({
+                              ...prev,
+                              [attr.name ?? ""]: option,
+                            }))
+                          }
+                          className={`px-4 py-2 rounded-xl border-2 text-sm font-medium transition-colors ${
+                            selectedAttributes[attr.name ?? ""] === option
+                              ? "border-[#2D5016] bg-[#E8F5D0] text-[#2D5016]"
+                              : "border-[#D4C9A8] text-[#4A5E30] hover:border-[#2D5016]"
+                          }`}
+                        >
+                          {option}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+
+              {/* Show matched variation price and stock */}
+              {selectedVariation && (
+                <div className="bg-[#F5F0E0] rounded-xl p-3 text-sm">
+                  <p className="text-[#2D5016] font-semibold">
+                    মূল্য: {formatBDT(selectedVariation.price ?? "0")}
+                  </p>
+                  <p className={selectedVariation.stock_status === "instock" ? "text-green-600" : "text-red-500"}>
+                    {selectedVariation.stock_status === "instock" ? "✓ স্টকে আছে" : "✗ স্টক নেই"}
+                  </p>
+                </div>
+              )}
+
+              {/* Warning if not all attributes selected */}
+              {product.type === "variable" && !selectedVariation && Object.keys(selectedAttributes).length > 0 && (
+                <p className="text-sm text-orange-500">এই কম্বিনেশন পাওয়া যাচ্ছে না</p>
+              )}
+            </div>
+          )}
+
           <div className="flex items-baseline gap-3 mb-8">
             <span className="text-4xl font-bold text-[#2D5016]">{formatBDT(product.price)}</span>
             {product.on_sale && product.regular_price && (
@@ -122,12 +194,24 @@ export default function ProductDetailClient({ product, related }: Props) {
               </button>
             </div>
             <button
-              onClick={() => addItem(product, qty)}
-              disabled={product.stock_status === "outofstock"}
+              onClick={() => {
+                if (product.type === "variable") {
+                  if (!selectedVariation) return;
+                  addItem(product, qty, selectedVariation);
+                } else {
+                  addItem(product, qty);
+                }
+              }}
+              disabled={
+                product.stock_status === "outofstock" ||
+                (product.type === "variable" && !selectedVariation)
+              }
               className="flex-1 flex items-center justify-center gap-2 bg-[#2D5016] text-white font-semibold py-3.5 rounded-xl hover:bg-[#3D6B1E] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <ShoppingCart size={18} />
-              কার্টে যোগ করুন
+              {product.type === "variable" && !selectedVariation
+                ? "ভ্যারিয়েশন বেছে নিন"
+                : "কার্টে যোগ করুন"}
             </button>
           </div>
 

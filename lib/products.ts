@@ -1,6 +1,6 @@
 'use server'
 import WooCommerceRestApi from 'woocommerce-rest-ts-api';
-import type { Products } from "woocommerce-rest-ts-api";
+import type { Products, ProductsVariations } from "woocommerce-rest-ts-api";
 import type { WCCategory } from "./woocommerce";
 import { unstable_cache } from "next/cache";
 
@@ -102,6 +102,23 @@ export const getProduct = async (id: string) => unstable_cache(
     }
   },
   ["product", id], 
+  { revalidate: 60 }
+)();
+
+export const getProductVariations = async (productId: number) => unstable_cache(
+  async () => {
+    try {
+      const response = await WooCommerce.get(
+        `products/${productId}/variations`,
+        { per_page: 100 } as Record<string, unknown>
+      )
+      return response.data as ProductsVariations[]
+    } catch (error) {
+      console.error("Failed to fetch variations:", error)
+      return []
+    }
+  },
+  ["variations", String(productId)],
   { revalidate: 60 }
 )();
 

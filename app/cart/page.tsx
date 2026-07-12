@@ -48,6 +48,15 @@ export default function CartPage() {
                 <Link href={`/products/${product.slug}`} className="font-semibold text-[#2D3A1E] hover:text-[#2D5016] line-clamp-2">
                   {product.name}
                 </Link>
+                {items.variation && (
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {items.variation.attributes?.map((attr) => (
+                      <span key={attr.id} className="text-xs bg-[#E8F5D0] text-[#2D5016] px-2 py-0.5 rounded-full">
+                        {attr.name}: {attr.option}
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <p className="text-sm text-[#7A8C5E] mt-0.5">{product.categories[0]?.name}</p>
                 <div className="flex items-center justify-between mt-3">
                   <div className="flex items-center border border-[#D4C9A8] rounded-lg overflow-hidden">
