@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ShoppingCart, Star, Minus, Plus, ArrowLeft, Truck, ShieldCheck } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { formatBDT } from "@/lib/woocommerce";
