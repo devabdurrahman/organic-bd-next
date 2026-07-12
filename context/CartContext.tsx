@@ -6,7 +6,7 @@ import type { WCProduct, WCVariation } from "@/lib/woocommerce";
 export interface CartItem {
   product: WCProduct;
   quantity: number;
-  variation?: ProductsVariations;
+  variation?: WCVariation;
 }
 
 interface CartState {
@@ -14,14 +14,14 @@ interface CartState {
 }
 
 type CartAction =
-  | { type: "ADD_ITEM"; product: WCProduct; quantity?: number; variation?: ProductsVariations }
+  | { type: "ADD_ITEM"; product: WCProduct; quantity?: number; variation?: WCVariation }
   | { type: "REMOVE_ITEM"; productId: number; variationId?: number }
   | { type: "UPDATE_QTY"; productId: number; variationId?: number; quantity: number }
   | { type: "CLEAR_CART" }
 
 const CartContext = createContext<{
   state: CartState;
-  addItem: (product: WCProduct, qty?: number, variation?: ProductsVariations) => void;
+  addItem: (product: WCProduct, qty?: number, variation?: WCVariation) => void;
   removeItem: (productId: number) => void;
   updateQty: (productId: number, qty: number) => void;
   clearCart: () => void;
@@ -87,7 +87,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("organic-bd-cart", JSON.stringify(state.items));
   }, [state.items]);
 
-  const addItem = (product: WCProduct, qty = 1, variation?: ProductsVariations) =>
+  const addItem = (product: WCProduct, qty = 1, variation?: WCVariation) =>
   dispatch({ type: "ADD_ITEM", product, quantity: qty, variation });
   const removeItem = (productId: number) => dispatch({ type: "REMOVE_ITEM", productId });
   const updateQty = (productId: number, quantity: number) =>
