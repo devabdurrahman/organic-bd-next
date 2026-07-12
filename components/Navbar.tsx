@@ -79,12 +79,12 @@ export default function Navbar() {
               <Search size={18} />
             </button>
 
-            <Link
+            {/*<Link
               href="/account"
               className="flex items-center text-[#6B7C52] hover:text-[#2D5016] transition-colors"
             >
               <User size={17} />
-            </Link>
+            </Link>*/}
 
             <Link
               href="/cart"
