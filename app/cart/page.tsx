@@ -33,7 +33,7 @@ export default function CartPage() {
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Items */}
         <div className="lg:col-span-2 space-y-4">
-          {items.map(({ product, quantity }) => (
+          {items.map(({ product, quantity, variation }) => (
             <div key={product.id} className="bg-white rounded-2xl border border-[#E8E2CC] p-4 flex gap-4">
               <div className="relative w-24 h-24 rounded-xl overflow-hidden shrink-0">
                 <Image
@@ -48,9 +48,9 @@ export default function CartPage() {
                 <Link href={`/products/${product.slug}`} className="font-semibold text-[#2D3A1E] hover:text-[#2D5016] line-clamp-2">
                   {product.name}
                 </Link>
-                {items.variation && (
+                {variation && (
                   <div className="flex flex-wrap gap-1 mt-1">
-                    {items.variation.attributes?.map((attr) => (
+                    {variation.attributes?.map((attr) => (
                       <span key={attr.id} className="text-xs bg-[#E8F5D0] text-[#2D5016] px-2 py-0.5 rounded-full">
                         {attr.name}: {attr.option}
                       </span>
