@@ -1,8 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useReducer, useEffect } from "react";
-import type { WCProduct } from "@/lib/woocommerce";
-import type { ProductsVariations } from "woocommerce-rest-ts-api";
+import type { WCProduct, WCVariation } from "@/lib/woocommerce";
 
 export interface CartItem {
   product: WCProduct;
