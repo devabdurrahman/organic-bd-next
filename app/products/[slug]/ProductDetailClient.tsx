@@ -8,7 +8,7 @@ import { useCart } from "@/context/CartContext";
 import { formatBDT } from "@/lib/woocommerce";
 import ProductCard from "@/components/ProductCard";
 import type { WCProduct } from "@/lib/woocommerce";
-import type { ProductsVariations } from "woocommerce-rest-ts-api";
+import ProductsVariations from "woocommerce-rest-ts-api";
 
 interface Props {
   product: WCProduct;
