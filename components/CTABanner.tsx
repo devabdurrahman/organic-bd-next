@@ -12,13 +12,13 @@ export default function CTABanner() {
         <div className="relative">
           <div className="flex items-center gap-2 justify-center md:justify-start mb-3">
             <Leaf size={16} className="text-[#A8D86A]" />
-            <span className="text-[#A8D86A] text-sm font-medium uppercase tracking-wide">বিশেষ অফার</span>
+            <span className="text-[#A8D86A] text-sm font-medium uppercase tracking-wide">Special Offer</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-            প্রথম অর্ডারে <span className="text-[#A8D86A]">১০% ছাড়</span>
+            On First Order <span className="text-[#A8D86A]">10% Discount</span>
           </h2>
           <p className="text-[#B8CCA0] max-w-md">
-            কোড ব্যবহার করুন: <strong className="text-white font-bold">SABUJMATI10</strong> — আজই আপনার প্রথম অর্ডার করুন।
+            Use the code: <strong className="text-white font-bold">SABUJMATI10</strong> — Place your first order today.
           </p>
         </div>
 
@@ -27,13 +27,13 @@ export default function CTABanner() {
             href="/products"
             className="flex items-center justify-center gap-2 bg-[#A8D86A] text-[#1E3A0A] font-bold px-8 py-3.5 rounded-xl hover:bg-[#BEE87A] transition-colors whitespace-nowrap"
           >
-            এখনই কিনুন <ArrowRight size={18} />
+            Buy Now <ArrowRight size={18} />
           </Link>
           <Link
             href="/contact"
             className="flex items-center justify-center gap-2 border-2 border-[#A8D86A]/50 text-[#A8D86A] font-semibold px-6 py-3.5 rounded-xl hover:bg-[#A8D86A]/10 transition-colors whitespace-nowrap"
           >
-            আরও জানুন
+            Learn More
           </Link>
         </div>
       </div>
