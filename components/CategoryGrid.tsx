@@ -29,8 +29,8 @@ export default function CategoryGrid({ categories }: Props) {
     <section className="bg-[#F2EFE4] py-16">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-10">
-          <p className="text-[#7A8C5E] text-sm font-medium uppercase tracking-widest mb-2">বিভাগ</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#2D3A1E]">পণ্যের ধরন অনুযায়ী বেছে নিন</h2>
+          <p className="text-[#7A8C5E] text-sm font-medium uppercase tracking-widest mb-2">Categories</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#2D3A1E]">Choose by product type</h2>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {categories.map((cat) => {
@@ -53,7 +53,7 @@ export default function CategoryGrid({ categories }: Props) {
                   <p className="font-semibold text-[#2D3A1E] text-sm group-hover:text-[#2D5016] transition-colors">
                     {cat.name}
                   </p>
-                  <p className="text-xs text-[#9A9A82] mt-0.5">{cat.count} পণ্য</p>
+                  <p className="text-xs text-[#9A9A82] mt-0.5">{cat.count} Products</p>
                 </div>
               </Link>
             );
