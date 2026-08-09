@@ -28,7 +28,7 @@ export default function FeaturedProducts({
           href={viewAllHref}
           className="hidden sm:flex items-center gap-2 text-[#2D5016] font-semibold hover:gap-3 transition-all"
         >
-          see all <ArrowRight size={18} />
+          See All <ArrowRight size={18} />
         </Link>
       </div>
 

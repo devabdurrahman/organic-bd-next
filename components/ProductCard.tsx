@@ -35,13 +35,13 @@ export default function ProductCard({ product }: Props) {
           />
           {product.on_sale && (
             <span className="absolute top-3 left-3 bg-[#E8641A] text-white text-xs font-bold px-2 py-1 rounded-md">
-              অফার
+              Offer
             </span>
           )}
           {product.stock_status === "outofstock" && (
             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
               <span className="bg-white text-[#3D3D2E] text-sm font-semibold px-3 py-1 rounded-full">
-                স্টক শেষ
+                Stock Out
               </span>
             </div>
           )}
@@ -88,7 +88,7 @@ export default function ProductCard({ product }: Props) {
               className="flex items-center gap-1.5 bg-[#2D5016] text-white text-sm font-medium px-3 py-2 rounded-lg hover:bg-[#3D6B1E] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
             >
               <ShoppingCart size={15} />
-              <span className="hidden sm:inline">যোগ করুন</span>
+              <span className="hidden sm:inline">Add to Cart</span>
             </button>
           </div>
         </div>
