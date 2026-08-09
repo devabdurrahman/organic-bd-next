@@ -21,18 +21,18 @@ export default function HeroSection() {
         <div>
           <div className="inline-flex items-center gap-2 bg-[#A8D86A]/20 text-[#A8D86A] text-sm font-medium px-4 py-1.5 rounded-full mb-6 border border-[#A8D86A]/30">
             <Leaf size={14} />
-            বাংলাদেশের #১ জৈব পণ্যের দোকান
+            #1 Organic Product Store in Bangladesh
           </div>
 
           <h1 className="text-4xl md:text-5xl xl:text-6xl font-bold text-white leading-tight mb-6">
-            প্রকৃতির{" "}
-            <span className="text-[#A8D86A]">খাঁটি স্বাদ</span>
+            Pure taste{" "}
+            <span className="text-[#A8D86A]">of nature</span>
             <br />
-            আপনার দরজায়
+            At your doorstep
           </h1>
 
           <p className="text-[#B8CCA0] text-lg leading-relaxed mb-8 max-w-lg">
-            কোনো ভেজাল নেই, কোনো রাসায়নিক নেই — শুধু বাংলাদেশের মাটি থেকে উঠে আসা বিশুদ্ধ জৈব খাদ্যপণ্য। সরাসরি কৃষকের কাছ থেকে আপনার রান্নাঘরে।
+            No adulteration, no chemicals — just pure organic food from the soil of Bangladesh. Directly from the farmer to your kitchen.
           </p>
 
           <div className="flex flex-wrap gap-4 mb-12">
@@ -40,22 +40,22 @@ export default function HeroSection() {
               href="/products"
               className="flex items-center gap-2 bg-[#A8D86A] text-[#1E3A0A] font-bold px-6 py-3 rounded-xl hover:bg-[#BEE87A] transition-colors text-base"
             >
-              পণ্য দেখুন <ArrowRight size={18} />
+              View the products <ArrowRight size={18} />
             </Link>
             <Link
               href="/about"
               className="flex items-center gap-2 border border-[#A8D86A]/50 text-[#A8D86A] font-semibold px-6 py-3 rounded-xl hover:bg-[#A8D86A]/10 transition-colors text-base"
             >
-              আমাদের সম্পর্কে
+              About us
             </Link>
           </div>
 
           {/* Trust badges */}
           <div className="grid grid-cols-3 gap-4">
             {[
-              { icon: ShieldCheck, label: "১০০% খাঁটি" },
-              { icon: Truck, label: "সারাদেশে ডেলিভারি" },
-              { icon: Leaf, label: "রাসায়নিকমুক্ত" },
+              { icon: ShieldCheck, label: "100% authentic" },
+              { icon: Truck, label: "Nationwide delivery" },
+              { icon: Leaf, label: "Chemical free" },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="flex flex-col items-center gap-2 bg-white/5 rounded-xl p-3 border border-white/10 text-center">
                 <Icon size={20} className="text-[#A8D86A]" />
@@ -70,10 +70,10 @@ export default function HeroSection() {
           <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 w-full max-w-sm">
             <div className="grid grid-cols-2 gap-6 mb-6">
               {[
-                { number: "৫০০+", label: "কৃষক পরিবার" },
-                { number: "২০০+", label: "জৈব পণ্য" },
-                { number: "৫০,০০০+", label: "সন্তুষ্ট গ্রাহক" },
-                { number: "৬৪", label: "জেলায় ডেলিভারি" },
+                { number: "500+", label: "Farmer family" },
+                { number: "200+", label: "Organic products" },
+                { number: "50,000+", label: "Satisfied customer" },
+                { number: "64", label: "Delivery to district" },
               ].map(({ number, label }) => (
                 <div key={label} className="text-center">
                   <div className="text-2xl font-bold text-[#A8D86A]">{number}</div>
@@ -83,9 +83,9 @@ export default function HeroSection() {
             </div>
             <div className="border-t border-white/10 pt-5">
               <p className="text-[#C8DCA8] text-sm text-center italic">
-                &ldquo;সবুজ মাটি আমাদের পরিবারের স্বাস্থ্য রক্ষা করছে। খাঁটি পণ্য পেয়ে সত্যিই খুশি।&rdquo;
+                &ldquo;সবুজ মাটি is protecting our family’s health. Really happy to get pure products.&rdquo;
               </p>
-              <p className="text-[#A8D86A] text-xs text-center mt-2 font-medium">— রহিমা বেগম, ঢাকা</p>
+              <p className="text-[#A8D86A] text-xs text-center mt-2 font-medium">— Rahima Begum, Dhaka</p>
             </div>
           </div>
 
@@ -95,8 +95,8 @@ export default function HeroSection() {
               <Leaf size={18} className="text-[#A8D86A]" />
             </div>
             <div>
-              <p className="text-[#1E3A0A] font-bold text-sm">সার্টিফাইড অর্গানিক</p>
-              <p className="text-[#2D5016] text-xs">BSTI অনুমোদিত</p>
+              <p className="text-[#1E3A0A] font-bold text-sm">Certified Organic</p>
+              <p className="text-[#2D5016] text-xs">BSTI approved</p>
             </div>
           </div>
         </div>
