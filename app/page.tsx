@@ -52,15 +52,15 @@ export default async function HomePage() {
       <CategoryGrid categories={categories} />
       <FeaturedProducts
         products={products.slice(0, 8)}
-        title="জনপ্রিয় পণ্যসমূহ"
-        subtitle="আমাদের গ্রাহকদের সবচেয়ে পছন্দের পণ্য"
+        title="Popular products"
+        subtitle="Our customers most favorite products"
       />
       <WhyUs />
       <FeaturedProducts
         // products={products.filter((p) => p.on_sale).slice(0, 4)}
         products={products.slice(0, 4)}
-        title="বিশেষ ছাড়ের পণ্য"
-        subtitle="সীমিত সময়ের জন্য বিশেষ মূল্য হ্রাস"
+        title="Special discount products"
+        subtitle="Special price reduction for a limited time"
         viewAllHref="/products?on_sale=true"
       />
       <Testimonials />
