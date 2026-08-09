@@ -17,7 +17,7 @@ export default function Footer() {
             </div>
           </div>
           <p className="text-sm leading-relaxed text-[#A8B896]">
-            বাংলাদেশের কৃষকদের সাথে সরাসরি কাজ করে আপনার কাছে পৌঁছে দিচ্ছি ১০০% জৈব ও প্রাকৃতিক পণ্য।
+            We work directly with farmers in Bangladesh to deliver 100% organic and natural products to you.
           </p>
           <div className="flex gap-3 mt-5">
             <a href="#" className="w-9 h-9 bg-[#2D5016] rounded-full flex items-center justify-center hover:bg-[#3D6B1E] transition-colors">
@@ -31,14 +31,14 @@ export default function Footer() {
 
         {/* Quick links */}
         <div>
-          <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">দ্রুত লিংক</h4>
+          <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Quick Links</h4>
           <ul className="space-y-2 text-sm">
             {[
-              { href: "/products", label: "সকল পণ্য" },
-              { href: "/categories", label: "বিভাগসমূহ" },
-              { href: "/about", label: "আমাদের সম্পর্কে" },
-              { href: "/blog", label: "ব্লগ" },
-              { href: "/contact", label: "যোগাযোগ" },
+              { href: "/products", label: "All products" },
+              { href: "/categories", label: "Departments" },
+              { href: "/about", label: "About us" },
+              { href: "/blog", label: "Blog" },
+              { href: "/contact", label: "Contact" },
             ].map((l) => (
               <li key={l.href}>
                 <Link href={l.href} className="hover:text-[#A8D86A] transition-colors">
@@ -51,9 +51,9 @@ export default function Footer() {
 
         {/* Categories */}
         <div>
-          <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">বিভাগ</h4>
+          <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Categories</h4>
           <ul className="space-y-2 text-sm">
-            {["শস্য ও চাল", "তেল ও ঘি", "মধু ও মিষ্টি", "মসলা", "শাকসবজি", "ডাল ও বাদাম"].map((cat) => (
+            {["Cereals and rice", "Oil and ghee", "Honey and sweets", "Spice", "Vegetables", "Pulses and nuts"].map((cat) => (
               <li key={cat}>
                 <Link href={`/categories`} className="hover:text-[#A8D86A] transition-colors">
                   {cat}
@@ -65,15 +65,15 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">যোগাযোগ</h4>
+          <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contact</h4>
           <ul className="space-y-3 text-sm">
             <li className="flex items-start gap-3">
               <MapPin size={15} className="mt-0.5 text-[#A8D86A] shrink-0" />
-              <span>১২৩ গ্রিন রোড, ধানমন্ডি, ঢাকা-১২০৫</span>
+              <span>123 Green Road, Dhanmondi, Dhaka-1205</span>
             </li>
             <li className="flex items-center gap-3">
               <Phone size={15} className="text-[#A8D86A] shrink-0" />
-              <span>০১৭০০-০০০০০০</span>
+              <span>01700-000000</span>
             </li>
             <li className="flex items-center gap-3">
               <Mail size={15} className="text-[#A8D86A] shrink-0" />
@@ -81,7 +81,7 @@ export default function Footer() {
             </li>
           </ul>
           <div className="mt-5">
-            <p className="text-xs text-[#7A9C52] mb-2">নিউজলেটার সাবস্ক্রাইব করুন</p>
+            <p className="text-xs text-[#7A9C52] mb-2">Subscribe to the newsletter</p>
             <div className="flex gap-2">
               <input
                 type="email"
@@ -89,7 +89,7 @@ export default function Footer() {
                 className="flex-1 bg-[#2D5016] text-white placeholder:text-[#6B8050] text-sm px-3 py-2 rounded-lg outline-none focus:ring-1 focus:ring-[#A8D86A]"
               />
               <button className="bg-[#A8D86A] text-[#1E3A0A] text-sm font-semibold px-3 py-2 rounded-lg hover:bg-[#BEE87A] transition-colors">
-                যোগ
+                Subscribe
               </button>
             </div>
           </div>
@@ -98,10 +98,10 @@ export default function Footer() {
 
       <div className="border-t border-[#2D5016] py-5">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#7A9C52]">
-          <p>© ২০২৪ সবুজ মাটি। সর্বস্বত্ব সংরক্ষিত।</p>
+          <p>© 2024 Green Earth. All rights reserved.</p>
           <div className="flex gap-4">
-            <Link href="/privacy" className="hover:text-[#A8D86A] transition-colors">গোপনীয়তা নীতি</Link>
-            <Link href="/terms" className="hover:text-[#A8D86A] transition-colors">শর্তাবলী</Link>
+            <Link href="/privacy" className="hover:text-[#A8D86A] transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-[#A8D86A] transition-colors">Conditions</Link>
           </div>
         </div>
       </div>
