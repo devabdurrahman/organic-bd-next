@@ -13,7 +13,7 @@ interface Props {
 export default function FeaturedProducts({
   products,
   title = "Popular products",
-  subtitle = "Our customers' most favorite products",
+  subtitle = "Our customers most favorite products",
   viewAllHref = "/products",
 }: Props) {
   return (
