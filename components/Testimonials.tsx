@@ -2,25 +2,25 @@ import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    name: "রহিমা বেগম",
-    location: "ঢাকা, মিরপুর",
-    text: "সবুজ মাটির কালিজিরা চাল সত্যিই অসাধারণ। গন্ধ আর স্বাদে একদম আসল। আমি এখন আর বাজার থেকে চাল কিনি না।",
+    name: "Rahima Begum",
+    location: "Dhaka, Mirpur",
+    text: "Rice is truly amazing. The smell and taste are so authentic. I don't buy rice from the market anymore.",
     rating: 5,
-    avatar: "র",
+    avatar: "R",
   },
   {
-    name: "করিম সাহেব",
-    location: "চট্টগ্রাম",
-    text: "সুন্দরবনের মধু পেয়ে মনে হলো আসলেই খাঁটি মধু। আগে বাজারে যা কিনতাম সেটা আর কিনতে পারছি না।",
+    name: "Mr. Karim",
+    location: "Chittagong",
+    text: "After getting Sundarbans honey, I felt like it was truly pure honey. I can no longer buy what I used to buy in the market.",
     rating: 5,
-    avatar: "ক",
+    avatar: "K",
   },
   {
-    name: "সুমাইয়া খানম",
-    location: "সিলেট",
-    text: "সরিষার তেল ও হলুদ গুঁড়া দুটোই দারুণ। ডেলিভারি সময়মতো হয়েছে এবং প্যাকেজিং খুবই সুন্দর।",
+    name: "Sumaiya Khanam",
+    location: "Sylhet",
+    text: "Both the mustard oil and turmeric powder are great. Delivery was on time and the packaging is very nice.",
     rating: 5,
-    avatar: "স",
+    avatar: "S",
   },
 ];
 
@@ -29,8 +29,8 @@ export default function Testimonials() {
     <section className="bg-[#F2EFE4] py-16">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <p className="text-[#7A8C5E] text-sm font-medium uppercase tracking-widest mb-2">গ্রাহকদের মতামত</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#2D3A1E]">তারা যা বলেন</h2>
+          <p className="text-[#7A8C5E] text-sm font-medium uppercase tracking-widest mb-2">Customer feedback</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#2D3A1E]">what they say</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
