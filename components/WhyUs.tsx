@@ -3,43 +3,43 @@ import { ShieldCheck, Truck, Users, Award, Leaf, HeartHandshake } from "lucide-r
 const features = [
   {
     icon: ShieldCheck,
-    title: "১০০% খাঁটি পণ্য",
-    desc: "প্রতিটি পণ্য পরীক্ষিত ও সার্টিফাইড। কোনো ভেজাল বা মিশ্রণ নেই।",
+    title: "100% genuine product",
+    desc: "Every product is tested and certified. No adulteration or mixing.",
     color: "#2D5016",
     bg: "#E8F5D0",
   },
   {
     icon: Truck,
-    title: "দ্রুত ডেলিভারি",
-    desc: "ঢাকায় ২৪ ঘণ্টায় এবং সারাদেশে ৩-৫ দিনের মধ্যে ডেলিভারি।",
+    title: "Fast delivery",
+    desc: "Delivery within 24 hours in Dhaka and within 3-5 days nationwide.",
     color: "#C87820",
     bg: "#FFF4DC",
   },
   {
     icon: Users,
-    title: "কৃষকের সাথে সরাসরি",
-    desc: "মধ্যস্বত্বভোগী ছাড়াই সরাসরি কৃষকের কাছ থেকে পণ্য সংগ্রহ করি।",
+    title: "Directly with the farmer",
+    desc: "We procure products directly from farmers without intermediaries.",
     color: "#1A6B8A",
     bg: "#E0F4FF",
   },
   {
     icon: Award,
-    title: "গুণমানের নিশ্চয়তা",
-    desc: "সন্তুষ্ট না হলে ৭ দিনের মধ্যে পণ্য ফেরত নেওয়ার গ্যারান্টি।",
+    title: "Quality assurance",
+    desc: "7-day return guarantee if not satisfied.",
     color: "#8B2FC9",
     bg: "#F4E8FF",
   },
   {
     icon: Leaf,
-    title: "পরিবেশবান্ধব",
-    desc: "জৈব চাষ পদ্ধতি ব্যবহার করে মাটির স্বাস্থ্য রক্ষা করা হয়।",
+    title: "Environmentally friendly",
+    desc: "Soil health is maintained by using organic farming methods.",
     color: "#3D7A3A",
     bg: "#E8F5E8",
   },
   {
     icon: HeartHandshake,
-    title: "কৃষক সমর্থন",
-    desc: "প্রতিটি ক্রয়ের মাধ্যমে বাংলাদেশের কৃষক পরিবারকে সরাসরি সহায়তা।",
+    title: "Farmer support",
+    desc: "Direct support to Bangladeshi farming families with every purchase.",
     color: "#D4651A",
     bg: "#FFF0E8",
   },
@@ -49,12 +49,12 @@ export default function WhyUs() {
   return (
     <section className="max-w-7xl mx-auto px-4 py-16">
       <div className="text-center mb-12">
-        <p className="text-[#7A8C5E] text-sm font-medium uppercase tracking-widest mb-2">কেন আমরা আলাদা</p>
+        <p className="text-[#7A8C5E] text-sm font-medium uppercase tracking-widest mb-2">Why are we different?</p>
         <h2 className="text-3xl md:text-4xl font-bold text-[#2D3A1E] mb-4">
-          সবুজ মাটি কেন বেছে নেবেন?
+          Why choose সবুজ মাটি?
         </h2>
         <p className="text-[#6B7C52] max-w-xl mx-auto">
-          আমরা শুধু পণ্য বিক্রি করি না — আমরা একটি সুস্থ ও টেকসই খাদ্যব্যবস্থার স্বপ্ন দেখি।
+          We don't just sell products — we dream of a healthy and sustainable food system.
         </p>
       </div>
 
