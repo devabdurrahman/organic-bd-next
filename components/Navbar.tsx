@@ -12,11 +12,11 @@ export default function Navbar() {
   const { totalItems } = useCart();
 
   const navLinks = [
-    { href: "/", label: "হোম" },
-    { href: "/products", label: "পণ্যসমূহ" },
-    { href: "/categories", label: "বিভাগ" },
-    { href: "/about", label: "আমাদের সম্পর্কে" },
-    { href: "/contact", label: "যোগাযোগ" },
+    { href: "/", label: "Home" },
+    { href: "/products", label: "Products" },
+    { href: "/categories", label: "Categories" },
+    { href: "/about", label: "About us" },
+    { href: "/contact", label: "Contact" },
   ];
 
   return (
@@ -27,9 +27,9 @@ export default function Navbar() {
           <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
             <span className="flex items-center gap-2">
               <Phone size={13} />
-              ০১৭০০-০০০০০০ | সারাদেশে ডেলিভারি
+              +8801753915862 | info@sabujmati.com
             </span>
-            <span className="hidden sm:block">🌿 ১০০% প্রাকৃতিক ও জৈব পণ্য</span>
+            <span className="hidden sm:block">🌿 100% natural and organic products</span>
           </div>
         </div>
 
@@ -91,7 +91,7 @@ export default function Navbar() {
               className="relative flex items-center gap-1 bg-[#2D5016] text-white px-3 py-2 rounded-lg hover:bg-[#3D6B1E] transition-colors"
             >
               <ShoppingCart size={17} />
-              <span className="text-sm font-medium hidden sm:block">কার্ট</span>
+              <span className="text-sm font-medium hidden sm:block">Cart</span>
               {totalItems > 0 && (
                 <span className="absolute -top-1.5 -right-1.5 bg-[#E8641A] text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {totalItems}
