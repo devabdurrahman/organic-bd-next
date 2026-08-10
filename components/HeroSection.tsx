@@ -32,7 +32,7 @@ export default function HeroSection() {
           </h1>
 
           <p className="text-[#B8CCA0] text-lg leading-relaxed mb-8 max-w-lg">
-            No adulteration, no chemicals — just pure organic food from the soil of Bangladesh. Directly from the farmer to your kitchen.
+            No adulteration, no chemicals just pure organic food from the soil of Bangladesh. Directly from the farmer to your kitchen.
           </p>
 
           <div className="flex flex-wrap gap-4 mb-12">

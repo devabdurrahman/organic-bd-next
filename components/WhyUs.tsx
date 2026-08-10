@@ -54,7 +54,7 @@ export default function WhyUs() {
           Why choose সবুজ মাটি?
         </h2>
         <p className="text-[#6B7C52] max-w-xl mx-auto">
-          We don't just sell products — we dream of a healthy and sustainable food system.
+          We don't just sell products, we dream of a healthy and sustainable food system.
         </p>
       </div>
 

@@ -18,7 +18,7 @@ export default function CTABanner() {
             On First Order <span className="text-[#A8D86A]">10% Discount</span>
           </h2>
           <p className="text-[#B8CCA0] max-w-md">
-            Use the code: <strong className="text-white font-bold">SABUJMATI10</strong> — Place your first order today.
+            Use the code: <strong className="text-white font-bold">SABUJMATI10</strong> Place your first order today.
           </p>
         </div>
 
