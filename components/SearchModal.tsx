@@ -124,7 +124,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="পণ্য খুঁজুন..."
+              placeholder="Find products..."
               className="flex-1 bg-transparent text-[#2D3A1E] placeholder:text-[#A8B896] text-base outline-none"
             />
             {query && (
@@ -148,7 +148,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
             {!query && (
               <div className="p-5">
                 <p className="text-xs font-semibold text-[#7A8C5E] uppercase tracking-widest mb-3 flex items-center gap-2">
-                  <TrendingUp size={13} /> জনপ্রিয় খোঁজ
+                  <TrendingUp size={13} /> Popular searches
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {POPULAR_SEARCHES.map((term) => (
@@ -163,7 +163,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
                 </div>
 
                 <p className="text-xs font-semibold text-[#7A8C5E] uppercase tracking-widest mt-6 mb-3 flex items-center gap-2">
-                  <Tag size={13} /> সকল বিভাগ
+                  <Tag size={13} /> All Categories
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {allCategories.map((cat) => (
@@ -185,7 +185,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
             {loading && (
               <div className="flex items-center justify-center py-12 text-[#7A8C5E]">
                 <div className="w-5 h-5 border-2 border-[#2D5016] border-t-transparent rounded-full animate-spin" />
-                <span className="ml-3 text-sm">খোঁজা হচ্ছে...</span>
+                <span className="ml-3 text-sm">Searching...</span>
               </div>
             )}
 
@@ -194,9 +194,9 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
               <div className="text-center py-12 px-6">
                 <Search size={36} className="mx-auto text-[#D4C9A8] mb-3" />
                 <p className="font-semibold text-[#2D3A1E] mb-1">
-                  &ldquo;{query}&rdquo; এর জন্য কোনো পণ্য পাওয়া যায়নি
+                  &ldquo;{query}&rdquo; No products found for this
                 </p>
-                <p className="text-sm text-[#7A8C5E]">ভিন্ন শব্দ দিয়ে আবার চেষ্টা করুন</p>
+                <p className="text-sm text-[#7A8C5E]">Try again with different words.</p>
               </div>
             )}
 
@@ -207,7 +207,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
                 {categoryResults.length > 0 && (
                   <div className="mb-3">
                     <p className="text-xs font-semibold text-[#7A8C5E] uppercase tracking-widest px-2 mb-2 flex items-center gap-2">
-                      <Tag size={12} /> বিভাগ
+                      <Tag size={12} /> Category
                     </p>
                     <div className="flex flex-wrap gap-2 px-2">
                       {categoryResults.map((cat) => (
@@ -229,7 +229,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
                 {results.length > 0 && (
                   <>
                     <p className="text-xs font-semibold text-[#7A8C5E] uppercase tracking-widest px-2 mb-2 mt-3 flex items-center gap-2">
-                      <Search size={12} /> পণ্য ({results.length} টি পাওয়া গেছে)
+                      <Search size={12} /> ({results.length} products found)
                     </p>
                     <div className="space-y-1">
                       {results.map((product) => (
@@ -291,7 +291,7 @@ export default function SearchModal({ open, onClose }: SearchModalProps) {
                     onClick={handleResultClick}
                     className="flex items-center justify-center gap-2 mt-3 py-2.5 text-sm font-semibold text-[#2D5016] border border-[#A8D86A] rounded-xl hover:bg-[#E8F5D0] transition-colors"
                   >
-                    &ldquo;{query}&rdquo; এর সব ফলাফল দেখুন
+                    &ldquo;{query}&rdquo; View all results
                     <ArrowRight size={15} />
                   </Link>
                 )}

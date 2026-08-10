@@ -15,10 +15,10 @@ export default function CartPage() {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
         <ShoppingBag size={64} className="mx-auto text-[#D4C9A8] mb-5" />
-        <h2 className="text-2xl font-bold text-[#2D3A1E] mb-2">আপনার কার্ট খালি</h2>
-        <p className="text-[#6B7C52] mb-8">এখনো কোনো পণ্য যোগ করা হয়নি</p>
+        <h2 className="text-2xl font-bold text-[#2D3A1E] mb-2">Your cart is empty</h2>
+        <p className="text-[#6B7C52] mb-8">No products added yet</p>
         <Link href="/products" className="inline-flex items-center gap-2 bg-[#2D5016] text-white font-semibold px-6 py-3 rounded-xl hover:bg-[#3D6B1E] transition-colors">
-          পণ্য দেখুন <ArrowRight size={18} />
+          View the product <ArrowRight size={18} />
         </Link>
       </div>
     );
@@ -27,7 +27,7 @@ export default function CartPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold text-[#2D3A1E] mb-8">
-        আপনার কার্ট ({totalItems} টি পণ্য)
+        Your cart ({totalItems} products)
       </h1>
 
       <div className="grid lg:grid-cols-3 gap-8">
@@ -76,25 +76,25 @@ export default function CartPage() {
         {/* Summary */}
         <div className="lg:col-span-1">
           <div className="bg-white rounded-2xl border border-[#E8E2CC] p-6 sticky top-24">
-            <h2 className="font-bold text-[#2D3A1E] text-lg mb-5">অর্ডার সারসংক্ষেপ</h2>
+            <h2 className="font-bold text-[#2D3A1E] text-lg mb-5">Order Summary</h2>
             <div className="space-y-3 mb-5">
               <div className="flex justify-between text-sm text-[#4A5E30]">
-                <span>সাবটোটাল</span>
+                <span>Subtotal</span>
                 <span>{formatBDT(totalPrice)}</span>
               </div>
               <div className="flex justify-between text-sm text-[#4A5E30]">
-                <span>ডেলিভারি চার্জ</span>
+                <span>Delivery charge</span>
                 <span className={shippingFee === 0 ? "text-green-600 font-medium" : ""}>
-                  {shippingFee === 0 ? "বিনামূল্যে" : formatBDT(shippingFee)}
+                  {shippingFee === 0 ? "for free" : formatBDT(shippingFee)}
                 </span>
               </div>
               {shippingFee > 0 && (
                 <p className="text-xs text-[#7A8C5E] bg-[#F5F0E0] rounded-lg p-2">
-                  ৳৯৯৯ বা তার বেশি কেনাকাটায় বিনামূল্যে ডেলিভারি পাবেন
+                  Get free delivery on purchases of ৳999 or more
                 </p>
               )}
               <div className="border-t border-[#E8E2CC] pt-3 flex justify-between font-bold text-[#2D3A1E]">
-                <span>মোট</span>
+                <span>Total</span>
                 <span className="text-[#2D5016] text-lg">{formatBDT(totalPrice + shippingFee)}</span>
               </div>
             </div>
@@ -107,7 +107,7 @@ export default function CartPage() {
                 className="flex-1 border border-[#D4C9A8] rounded-lg px-3 py-2 text-sm outline-none focus:border-[#2D5016]"
               />
               <button className="bg-[#F5F0E0] text-[#2D5016] font-semibold text-sm px-3 py-2 rounded-lg hover:bg-[#EBE5CC] transition-colors">
-                প্রয়োগ
+                Apply
               </button>
             </div>
 
@@ -115,10 +115,10 @@ export default function CartPage() {
               href="/checkout"
               className="w-full flex items-center justify-center gap-2 bg-[#2D5016] text-white font-bold py-3.5 rounded-xl hover:bg-[#3D6B1E] transition-colors"
             >
-              চেকআউট করুন <ArrowRight size={18} />
+              Checkout <ArrowRight size={18} />
             </Link>
             <Link href="/products" className="block text-center text-sm text-[#6B7C52] mt-3 hover:text-[#2D5016] transition-colors">
-              কেনাকাটা চালিয়ে যান
+              Continue shopping
             </Link>
           </div>
         </div>
