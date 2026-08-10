@@ -103,7 +103,7 @@ export default function CartPage() {
             <div className="flex gap-2 mb-5">
               <input
                 type="text"
-                placeholder="কুপন কোড"
+                placeholder="Coupon Code"
                 className="flex-1 border border-[#D4C9A8] rounded-lg px-3 py-2 text-sm outline-none focus:border-[#2D5016]"
               />
               <button className="bg-[#F5F0E0] text-[#2D5016] font-semibold text-sm px-3 py-2 rounded-lg hover:bg-[#EBE5CC] transition-colors">
