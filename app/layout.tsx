@@ -3,12 +3,20 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
-import { Noto_Sans_Bengali } from "next/font/google";
+// import { Noto_Sans_Bengali } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 // import NextTopLoader from "nextjs-toploader";
 
-const notoSansBengali = Noto_Sans_Bengali({
+// const notoSansBengali = Noto_Sans_Bengali({
+//   weight: ["300", "400", "500", "600", "700"],
+//   subsets: ["bengali"],
+//   display: "swap",
+//   preload: true,
+// });
+
+const dmSans = DM_Sans({
   weight: ["300", "400", "500", "600", "700"],
-  subsets: ["bengali"],
+  subsets: ["latin"],
   display: "swap",
   preload: true,
 });
@@ -46,10 +54,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="bn">
+    <html lang="en">
       <head>
       </head>
-      <body className={`${notoSansBengali.className} bg-[#FAFAF7] text-[#2D3A1E] antialiased`}>
+      <body className={`${dmSans.className} bg-[#FAFAF7] text-[#2D3A1E] antialiased`}>
       {/*<NextTopLoader
         color="#A8D86A"
         shadow="0 0 10px #A8D86A, 0 0 5px #ffffff"
