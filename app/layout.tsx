@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
 // import { Noto_Sans_Bengali } from "next/font/google";
-import { DM_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 // import NextTopLoader from "nextjs-toploader";
 
 // const notoSansBengali = Noto_Sans_Bengali({
@@ -14,7 +14,7 @@ import { DM_Sans } from "next/font/google";
 //   preload: true,
 // });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
   display: "swap",
@@ -57,7 +57,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
       </head>
-      <body className={`${dmSans.className} bg-[#FAFAF7] text-[#2D3A1E] antialiased`}>
+      <body className={`${inter.className} bg-[#FAFAF7] text-[#2D3A1E] antialiased`}>
       {/*<NextTopLoader
         color="#A8D86A"
         shadow="0 0 10px #A8D86A, 0 0 5px #ffffff"
