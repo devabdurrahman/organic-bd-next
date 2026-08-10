@@ -73,8 +73,8 @@ export default async function ProductDetailPage({
   if (!product) {
     return (
       <div className="max-w-7xl mx-auto px-4 py-20 text-center">
-        <p className="text-xl text-[#6B7C52] mb-4">পণ্যটি পাওয়া যায়নি</p>
-        <a href="/products" className="text-[#2D5016] underline">সব পণ্য দেখুন</a>
+        <p className="text-xl text-[#6B7C52] mb-4">Product not found</p>
+        <a href="/products" className="text-[#2D5016] underline">See All Products</a>
       </div>
     );
   }

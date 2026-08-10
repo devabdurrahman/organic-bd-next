@@ -39,7 +39,7 @@ export default function ProductDetailClient({ product, variations, related }: Pr
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
       <Link href="/products" className="inline-flex items-center gap-2 text-[#6B7C52] hover:text-[#2D5016] mb-8 transition-colors">
-        <ArrowLeft size={16} /> সব পণ্যে ফিরুন
+        <ArrowLeft size={16} /> Back to Products
       </Link>
 
       <div className="grid md:grid-cols-2 gap-12 mb-16">
@@ -57,7 +57,7 @@ export default function ProductDetailClient({ product, variations, related }: Pr
             />
             {product.on_sale && (
               <span className="absolute top-4 left-4 bg-[#E8641A] text-white text-sm font-bold px-3 py-1 rounded-lg">
-                বিশেষ ছাড়
+                Special Discount
               </span>
             )}
           </div>
@@ -155,17 +155,17 @@ export default function ProductDetailClient({ product, variations, related }: Pr
               {selectedVariation && (
                 <div className="bg-[#F5F0E0] rounded-xl p-3 text-sm">
                   <p className="text-[#2D5016] font-semibold">
-                    মূল্য: {formatBDT(selectedVariation.price ?? "0")}
+                    Price: {formatBDT(selectedVariation.price ?? "0")}
                   </p>
                   <p className={selectedVariation.stock_status === "instock" ? "text-green-600" : "text-red-500"}>
-                    {selectedVariation.stock_status === "instock" ? "✓ স্টকে আছে" : "✗ স্টক নেই"}
+                    {selectedVariation.stock_status === "instock" ? "✓ In Stock" : "✗ Stock Out"}
                   </p>
                 </div>
               )}
 
               {/* Warning if not all attributes selected */}
               {product.type === "variable" && !selectedVariation && Object.keys(selectedAttributes).length > 0 && (
-                <p className="text-sm text-orange-500">এই কম্বিনেশন পাওয়া যাচ্ছে না</p>
+                <p className="text-sm text-orange-500">This combination is not available.</p>
               )}
             </div>
           )}
@@ -176,7 +176,7 @@ export default function ProductDetailClient({ product, variations, related }: Pr
               <>
                 <span className="text-xl text-[#9A9A82] line-through">{formatBDT(product.regular_price)}</span>
                 <span className="bg-[#FFF0E8] text-[#E8641A] text-sm font-bold px-2 py-0.5 rounded">
-                  {Math.round((1 - parseFloat(product.price) / parseFloat(product.regular_price)) * 100)}% ছাড়
+                  {Math.round((1 - parseFloat(product.price) / parseFloat(product.regular_price)) * 100)}% Discount
                 </span>
               </>
             )}
@@ -209,23 +209,23 @@ export default function ProductDetailClient({ product, variations, related }: Pr
             >
               <ShoppingCart size={18} />
               {product.type === "variable" && !selectedVariation
-                ? "ভ্যারিয়েশন বেছে নিন"
-                : "কার্টে যোগ করুন"}
+                ? "Choose a variation"
+                : "Add to cart"}
             </button>
           </div>
 
           <p className={`text-sm mb-6 ${product.stock_status === "instock" ? "text-green-600" : "text-red-500"}`}>
-            {product.stock_status === "instock" ? `✓ স্টকে আছে (${product.stock_quantity ?? "প্রচুর"} টি বাকি)` : "✗ স্টক নেই"}
+            {product.stock_status === "instock" ? `✓ In Stock (${product.stock_quantity ?? "প্রচুর"} টি বাকি)` : "✗ Out of Stock"}
           </p>
 
           <div className="grid grid-cols-2 gap-3">
             <div className="flex items-center gap-2 bg-[#F5F0E0] rounded-xl p-3">
               <Truck size={18} className="text-[#2D5016]" />
-              <span className="text-sm text-[#4A5E30]">সারাদেশে ডেলিভারি</span>
+              <span className="text-sm text-[#4A5E30]">Nationwide delivery</span>
             </div>
             <div className="flex items-center gap-2 bg-[#F5F0E0] rounded-xl p-3">
               <ShieldCheck size={18} className="text-[#2D5016]" />
-              <span className="text-sm text-[#4A5E30]">খাঁটি পণ্যের গ্যারান্টি</span>
+              <span className="text-sm text-[#4A5E30]">Guarantee of Authentic Products</span>
             </div>
           </div>
         </div>
@@ -233,7 +233,7 @@ export default function ProductDetailClient({ product, variations, related }: Pr
 
       {related.length > 0 && (
         <div>
-          <h2 className="text-2xl font-bold text-[#2D3A1E] mb-6">সম্পর্কিত পণ্য</h2>
+          <h2 className="text-2xl font-bold text-[#2D3A1E] mb-6">Related Products</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {related.map((p) => <ProductCard key={p.id} product={p} />)}
           </div>
