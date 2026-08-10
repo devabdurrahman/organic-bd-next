@@ -76,22 +76,22 @@ export default async function ProductsPage({ searchParams,}: {
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[#2D3A1E] mb-2">সকল পণ্য</h1>
-        <p className="text-[#6B7C52]">আমাদের সম্পূর্ণ জৈব পণ্যের সংগ্রহ</p>
+        <h1 className="text-3xl font-bold text-[#2D3A1E] mb-2">All Products</h1>
+        <p className="text-[#6B7C52]">Our complete organic product collection</p>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Sidebar */}
         <aside className="lg:w-56 shrink-0">
           <div className="bg-white rounded-2xl border border-[#E8E2CC] p-5">
-            <h3 className="font-semibold text-[#2D3A1E] mb-3">বিভাগ</h3>
+            <h3 className="font-semibold text-[#2D3A1E] mb-3">Categories</h3>
             <ul className="space-y-1.5">
               <li>
                 <a
                   href="/products"
                   className={`block text-sm px-3 py-2 rounded-lg transition-colors ${!params.category ? "bg-[#E8F5D0] text-[#2D5016] font-semibold" : "text-[#4A5E30] hover:bg-[#F5F0E0]"}`}
                 >
-                  সব পণ্য ({products.length})
+                  All products ({products.length})
                 </a>
               </li>
               {categories.map((cat) => (
@@ -107,7 +107,7 @@ export default async function ProductsPage({ searchParams,}: {
             </ul>
 
             <div className="mt-5 pt-5 border-t border-[#E8E2CC]">
-              <h3 className="font-semibold text-[#2D3A1E] mb-3">ফিল্টার</h3>
+              <h3 className="font-semibold text-[#2D3A1E] mb-3">Filter</h3>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input
                   type="checkbox"
@@ -116,7 +116,7 @@ export default async function ProductsPage({ searchParams,}: {
                   readOnly
                 />
                 <a href="/products?on_sale=true" className="text-sm text-[#4A5E30] hover:text-[#2D5016]">
-                  ছাড়ের পণ্য
+                  Discounted products
                 </a>
               </label>
             </div>
@@ -127,8 +127,8 @@ export default async function ProductsPage({ searchParams,}: {
         <div className="flex-1">
           {products.length === 0 ? (
             <div className="text-center py-20 text-[#6B7C52]">
-              <p className="text-xl mb-2">কোনো পণ্য পাওয়া যায়নি</p>
-              <a href="/products" className="text-[#2D5016] underline">সব পণ্য দেখুন</a>
+              <p className="text-xl mb-2">No products found</p>
+              <a href="/products" className="text-[#2D5016] underline">View all products</a>
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">

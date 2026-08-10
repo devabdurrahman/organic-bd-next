@@ -98,7 +98,7 @@ export default function Footer() {
 
       <div className="border-t border-[#2D5016] py-5">
         <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#7A9C52]">
-          <p>© 2024 Green Earth. All rights reserved.</p>
+          <p>© 2026 সবুজ মাটি. All rights reserved.</p>
           <div className="flex gap-4">
             <Link href="/privacy" className="hover:text-[#A8D86A] transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-[#A8D86A] transition-colors">Conditions</Link>

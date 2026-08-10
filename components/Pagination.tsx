@@ -34,11 +34,11 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Props) 
           href={getUrl(currentPage - 1)}
           className="flex items-center gap-1 px-3 py-2 rounded-lg border border-[#D4C9A8] text-[#4A5E30] hover:border-[#2D5016] hover:text-[#2D5016] transition-colors text-sm"
         >
-          <ChevronLeft size={16} /> আগের
+          <ChevronLeft size={16} /> Previous
         </Link>
       ) : (
         <span className="flex items-center gap-1 px-3 py-2 rounded-lg border border-[#E8E2CC] text-[#C0C0A8] text-sm cursor-not-allowed">
-          <ChevronLeft size={16} /> আগের
+          <ChevronLeft size={16} /> Previous
         </span>
       )}
 
@@ -67,11 +67,11 @@ export default function Pagination({ currentPage, totalPages, baseUrl }: Props) 
           href={getUrl(currentPage + 1)}
           className="flex items-center gap-1 px-3 py-2 rounded-lg border border-[#D4C9A8] text-[#4A5E30] hover:border-[#2D5016] hover:text-[#2D5016] transition-colors text-sm"
         >
-          পরের <ChevronRight size={16} />
+          Next <ChevronRight size={16} />
         </Link>
       ) : (
         <span className="flex items-center gap-1 px-3 py-2 rounded-lg border border-[#E8E2CC] text-[#C0C0A8] text-sm cursor-not-allowed">
-          পরের <ChevronRight size={16} />
+          Next <ChevronRight size={16} />
         </span>
       )}
     </div>
