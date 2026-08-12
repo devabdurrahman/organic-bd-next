@@ -4,12 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { ShoppingCart, Menu, X, Leaf, Search, Phone, User } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 import SearchModal from "@/components/SearchModal";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const { totalItems } = useCart();
+  const { isLoggedIn, user } = useAuth();
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -81,9 +83,10 @@ export default function Navbar() {
 
             <Link
               href="/account"
-              className="flex items-center text-[#6B7C52] hover:text-[#2D5016] transition-colors"
+              className="hidden sm:flex items-center gap-1.5 text-[#6B7C52] hover:text-[#2D5016] transition-colors text-sm"
             >
-              <User size={17} />
+              <User size={18} />
+              {isLoggedIn ? user?.firstName : "Login"}
             </Link>
 
             <Link

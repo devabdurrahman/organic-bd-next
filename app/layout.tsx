@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext";
 // import { Noto_Sans_Bengali } from "next/font/google";
 import { Inter } from "next/font/google";
 // import NextTopLoader from "nextjs-toploader";
@@ -65,9 +66,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         showSpinner={false}
       />*/}
         <CartProvider>
-          <Navbar />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
+          <AuthProvider>
+            <Navbar />
+            <main className="min-h-screen">{children}</main>
+            <Footer />
+          </AuthProvider>
         </CartProvider>
       </body>
     </html>

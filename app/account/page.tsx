@@ -1,5 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
+import { loginUser, registerUser } from "@/lib/auth";
 import { useState } from "react";
 import Link from "next/link";
 import { Eye, EyeOff, Leaf, ArrowRight, Mail, Lock, User } from "lucide-react";
@@ -11,7 +14,6 @@ export default function AccountPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-
   const [loginForm, setLoginForm] = useState({ email: "", password: "" });
   const [registerForm, setRegisterForm] = useState({
     firstName: "",
@@ -20,6 +22,40 @@ export default function AccountPage() {
     password: "",
     confirmPassword: "",
   });
+  const { login, isLoggedIn, user, logout } = useAuth();
+  const router = useRouter();
+  const [error, setError] = useState("");
+
+  // Redirect if already logged in — show dashboard instead
+  if (isLoggedIn && user) {
+    return (
+      <div className="min-h-screen bg-[#FAFAF7] flex items-center justify-center px-4">
+        <div className="w-full max-w-md bg-white rounded-2xl border border-[#E8E2CC] p-8 text-center">
+          <div className="w-16 h-16 bg-[#E8F5D0] rounded-full flex items-center justify-center mx-auto mb-4">
+            <User size={28} className="text-[#2D5016]" />
+          </div>
+          <h2 className="text-xl font-bold text-[#2D3A1E] mb-1">
+            Welcome, {user.firstName}!
+          </h2>
+          <p className="text-[#7A8C5E] text-sm mb-6">{user.email}</p>
+          <div className="space-y-3">
+            <Link
+              href="/account/orders"
+              className="flex items-center justify-between px-4 py-3 bg-[#F5F0E0] rounded-xl text-sm font-medium text-[#2D3A1E] hover:bg-[#EBE5CC] transition-colors"
+            >
+              My Orders <ArrowRight size={16} />
+            </Link>
+            <button
+              onClick={() => { logout(); router.push("/"); }}
+              className="w-full px-4 py-3 border border-[#D4C9A8] rounded-xl text-sm font-medium text-[#7A8C5E] hover:border-red-300 hover:text-red-500 transition-colors"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -31,17 +67,33 @@ export default function AccountPage() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     setLoading(true);
-    // TODO: implement JWT auth with WooCommerce
-    await new Promise((r) => setTimeout(r, 1000));
+    const result = await loginUser(loginForm.email, loginForm.password);
+    if ("error" in result) {
+      setError(result.error);
+    } else {
+      login(result.token, result.user);
+      router.push("/");
+    }
     setLoading(false);
   };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+    if (registerForm.password !== registerForm.confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
     setLoading(true);
-    // TODO: implement WooCommerce customer registration
-    await new Promise((r) => setTimeout(r, 1000));
+    const result = await registerUser(registerForm);
+    if ("error" in result) {
+      setError(result.error);
+    } else {
+      login(result.token, result.user);
+      router.push("/");
+    }
     setLoading(false);
   };
 
