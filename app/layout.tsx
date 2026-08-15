@@ -66,11 +66,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         showSpinner={false}
       />*/}
         <CartProvider>
-          <AuthProvider>
             <Navbar />
             <main className="min-h-screen">{children}</main>
             <Footer />
-          </AuthProvider>
         </CartProvider>
       </body>
     </html>
