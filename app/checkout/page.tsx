@@ -69,7 +69,9 @@ export default function CheckoutPage() {
       },
       line_items: state.items.map((item) => ({
         product_id: item.product.id,
-        variation_id: item.variation?.id,
+        ...(item.variation?.id
+        ? { variation_id: item.variation.id }
+        : {}),
         quantity: item.quantity,
       })),
       shipping_lines: [
@@ -80,7 +82,7 @@ export default function CheckoutPage() {
         },
       ],
     };
-
+    
     const order = await createOrder(orderPayload as Record<string, unknown>);
 
       if (order.id) {

@@ -186,7 +186,60 @@ export async function getOnSaleProducts(limit = 8) {
   return products;
 }
 
-export const createOrder = async (orderData: Record<string, unknown>) => {
-  const response = await WooCommerce.post("orders", orderData)
-  return response.data
-}
+// export const createOrder = async (orderData: Record<string, unknown>) => {
+//   const response = await WooCommerce.post("orders", orderData)
+//   return response.data
+// }
+
+// export const createOrder = async (orderData: Record<string, unknown>) => {
+//   const response = await WooCommerce.createOrder(orderData);
+//   return response.data;
+// }
+
+// export const createOrder = async (orderData: Record<string, unknown>) => {
+//   console.log('ORDER DATA RECEIVED BY SERVER:');
+//   console.dir(orderData, { depth: null });
+
+//   try {
+//     const response = await WooCommerce.createOrder(orderData);
+
+//     console.log('WOOCOMMERCE RESPONSE:');
+//     console.dir(response.data, { depth: null });
+
+//     return response.data;
+//   } catch (error) {
+//     console.error('WOOCOMMERCE CREATE ORDER ERROR:');
+//     console.error(error);
+
+//     throw error;
+//   }
+// };
+
+export const createOrder = async (
+  orderData: Record<string, unknown>
+) => {
+  const url = `${process.env.NEXT_PUBLIC_WC_URL}/wp-json/wc/v3/orders`;
+
+  const auth = Buffer.from(
+    `${process.env.WC_CONSUMER_KEY}:${process.env.WC_CONSUMER_SECRET}`
+  ).toString('base64');
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${auth}`,
+    },
+    body: JSON.stringify(orderData),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(
+      data?.message || 'Failed to create WooCommerce order'
+    );
+  }
+
+  return data;
+};
