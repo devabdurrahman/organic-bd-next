@@ -29,15 +29,49 @@ export async function loginUser(email: string, password: string): Promise<{
       return { error: data.message || "Invalid email or password" };
     }
 
+    // 2. Get WooCommerce customer by email
+    const WC_KEY = process.env.WC_CONSUMER_KEY as string;
+    const WC_SECRET = process.env.WC_CONSUMER_SECRET as string;
+
+    const credentials = Buffer.from(
+      `${WC_KEY}:${WC_SECRET}`
+    ).toString("base64");
+
+    const customerRes = await fetch(
+      `${WC_URL}/wp-json/wc/v3/customers?email=${encodeURIComponent(email)}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Basic ${credentials}`,
+        },
+      }
+    );
+
+    const customers = await customerRes.json();
+
+    if (!customerRes.ok) {
+      return {
+        error: "Unable to retrieve customer information.",
+      };
+    }
+
+    if (!customers.length) {
+      return {
+        error: "Customer account was not found.",
+      };
+    }
+
+    const customer = customers[0];
+
     return {
       token: data.token,
       user: {
-        id: data.user_id ?? 0,
-        email: data.user_email,
-        firstName: data.user_display_name?.split(" ")[0] ?? "",
-        lastName: data.user_display_name?.split(" ")[1] ?? "",
-        displayName: data.user_display_name,
-        avatarUrl: data.user_avatar ?? "",
+        id: customer.id ?? 0,
+        email: customer.email,
+        firstName: customer.first_name?.split(" ")[0] ?? "",
+        lastName: customer.last_name?.split(" ")[1] ?? "",
+        displayName: `${customer.first_name ?? ""} ${customer.last_name ?? ""}`.trim(),
+        avatarUrl: customer.avatar_url ?? "",
       },
     };
   } catch {

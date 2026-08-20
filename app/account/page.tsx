@@ -70,6 +70,7 @@ export default function AccountPage() {
     setError("");
     setLoading(true);
     const result = await loginUser(loginForm.email, loginForm.password);
+    console.log(result);
     if ("error" in result) {
       setError(result.error);
     } else {
@@ -95,6 +96,7 @@ export default function AccountPage() {
       router.push("/");
     }
     setLoading(false);
+    console.log(result);
   };
 
   return (

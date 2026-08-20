@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 import { formatBDT } from "@/lib/woocommerce";
 import { createOrder } from "@/lib/products";
 
@@ -28,6 +29,10 @@ export default function CheckoutPage() {
   const shippingFee = totalPrice >= 999 ? 0 : 80;
   const [orderId, setOrderId] = useState<number | null>(null);
   const [error, setError] = useState("");
+  const { user, isLoggedIn } = useAuth();
+
+  console.log(user);
+  console.log(isLoggedIn);  
 
   const [form, setForm] = useState({
     firstName: "", lastName: "", phone: "", email: "",
@@ -44,6 +49,7 @@ export default function CheckoutPage() {
 
   try {
     const orderPayload = {
+      customer_id: isLoggedIn ? user.id : 0,
       payment_method: paymentMethod,
       payment_method_title: PAYMENT_METHODS.find(m => m.id === paymentMethod)?.label,
       status: paymentMethod === "cod" ? "processing" : "pending",
@@ -82,8 +88,18 @@ export default function CheckoutPage() {
         },
       ],
     };
+
+    console.log(
+      "ORDER PAYLOAD:",
+      JSON.stringify(orderPayload, null, 2)
+    );
     
     const order = await createOrder(orderPayload as Record<string, unknown>);
+
+    console.log(
+      "CREATED ORDER:",
+      JSON.stringify(order, null, 2)
+    );
 
       if (order.id) {
         clearCart();
